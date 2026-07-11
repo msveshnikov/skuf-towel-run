@@ -1,0 +1,17 @@
+{
+  "name": "skuf-towel-run",
+  "version": "1.0.0",
+  "description": "Retro HTML5 arcade runner game - Skuf's Wet Floor Run",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8080"
+  },
+  "keywords": [
+    "game",
+    "html5",
+    "canvas",
+    "skuf"
+  ],
+  "author": "Antigravity Coding Assistant",
+  "license": "ISC"
+}

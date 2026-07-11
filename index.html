@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Skuf's Wet Floor Run - A challenging HTML5 retro-arcade game. Run across a wet floor, dodge cold water splashes and mop sweeps, and reach the warm towel without freezing or slipping!">
+    <title>Skuf's Wet Floor Run - Bathhouse Challenge</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        window.onerror = function(message, source, lineno, colno, error) {
+            const errDiv = document.createElement('div');
+            errDiv.style.position = 'fixed';
+            errDiv.style.top = '10px';
+            errDiv.style.left = '10px';
+            errDiv.style.right = '10px';
+            errDiv.style.background = 'rgba(255, 0, 0, 0.95)';
+            errDiv.style.color = '#fff';
+            errDiv.style.padding = '15px';
+            errDiv.style.borderRadius = '8px';
+            errDiv.style.zIndex = '99999';
+            errDiv.style.fontFamily = 'monospace';
+            errDiv.style.fontSize = '14px';
+            errDiv.style.boxShadow = '0 0 20px rgba(0,0,0,0.5)';
+            errDiv.style.border = '2px solid #fff';
+            errDiv.innerText = "⚠️ JavaScript Error: " + message + "\nFile: " + source + "\nLine: " + lineno + ":" + colno;
+            document.body.appendChild(errDiv);
+            return false;
+        };
+    </script>
+</head>
+<body>
+    <!-- Background steam clouds for atmospheric depth -->
+    <div class="ambient-steam" id="ambientSteam"></div>
+
+    <div class="game-wrapper">
+        <!-- Canvas for high performance retro rendering -->
+        <canvas id="gameCanvas" width="960" height="540"></canvas>
+
+        <!-- CRT & Vignette overlays for premium arcade machine appearance -->
+        <div class="crt-overlay" id="crtOverlay"></div>
+        <div class="vignette"></div>
+
+        <!-- Top Right Settings Bar (Audio and CRT toggle) -->
+        <div class="settings-bar">
+            <div class="icon-btn" id="audioToggle" title="Toggle Sound / Music">🔊</div>
+            <div class="icon-btn" id="scanlineToggle" title="Toggle Retro Scanlines">📺</div>
+        </div>
+
+        <!-- HUD (Heads-Up Display) Overlay -->
+        <div class="hud-overlay" id="gameHud">
+            <div class="hud-group">
+                <!-- Temperature Bar -->
+                <div class="hud-bar-container">
+                    <span class="hud-label">TEMP</span>
+                    <div class="hud-bar-bg">
+                        <div class="hud-bar-fill" id="tempFill" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <!-- Traction Bar -->
+                <div class="hud-bar-container">
+                    <span class="hud-label">TRACTION</span>
+                    <div class="hud-bar-bg">
+                        <div class="hud-bar-fill" id="tractionFill" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level Indicator -->
+            <div style="background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 8px 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); backdrop-filter: blur(5px);">
+                <span class="hud-label" id="hudLevelText" style="min-width: unset; font-size: 10px; color: var(--glow-yellow); font-family: var(--font-arcade);">LEVEL 1</span>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="distance-container">
+                <span class="distance-text">DISTANCE TO TOWEL</span>
+                <div class="distance-track">
+                    <div class="distance-marker" id="distanceMarker" style="left: 0%;">🏃</div>
+                    <div class="distance-marker towel"> towels </div>
+                </div>
+                <div class="distance-text" id="distanceText" style="margin-top: 4px;">500m</div>
+            </div>
+        </div>
+
+        <!-- Bottom Right Gameplay Controls Reminder -->
+        <div class="controls-reminder" id="controlsReminder">
+            <span><span class="key-badge">←</span><span class="key-badge">→</span> Run</span>
+            <span><span class="key-badge">Space</span> Jump</span>
+            <span><span class="key-badge">↓</span> Slide/Duck</span>
+        </div>
+
+        <!-- START SCREEN -->
+        <div class="ui-screen" id="startScreen">
+            <h1 class="retro-title">SKUF'S WET FLOOR RUN</h1>
+            <h2 class="sub-title">The Bathhouse Survival Challenge</h2>
+
+            <div class="instructions-card">
+                <div class="instruction-col">
+                    <h3>Survival Rules</h3>
+                    <ul>
+                        <li>🌡️ <strong>Keep Warm:</strong> Freezing wind from fans and bucket water drops your temperature. Don't hit 0%!</li>
+                        <li>👣 <strong>Watch Your Step:</strong> Running fast on wet tiles decays traction. If it drops to 0%, you slip!</li>
+                        <li>🧺 <strong>The Goal:</strong> Run 500 meters to reach the warm glowing towel at the exit.</li>
+                    </ul>
+                </div>
+                <div class="instruction-col">
+                    <h3>Controls</h3>
+                    <ul>
+                        <li><span class="key-badge">D</span> / <span class="key-badge">→</span> Accelerate (Fast, slippery)</li>
+                        <li><span class="key-badge">A</span> / <span class="key-badge">←</span> Decelerate (Careful, safe)</li>
+                        <li><span class="key-badge">Space</span> / <span class="key-badge">W</span> Jump (Dodge mops & pools)</li>
+                        <li><span class="key-badge">S</span> / <span class="key-badge">↓</span> Duck (Avoid fans) / Slide</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="startBtn">
+                <span>Start Challenge</span> 🎮
+            </button>
+        </div>
+
+        <!-- RESUME PROMPT SCREEN -->
+        <div class="ui-screen hidden" id="resumePromptScreen">
+            <div class="resume-modal">
+                <h2 class="retro-title" style="font-size: 24px; color: var(--glow-yellow);">WET FLOOR COLLAPSE!</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 10px;">Do you want to resume running, or start over?</p>
+                <div class="resume-countdown" id="resumeCountdown">5</div>
+                <div class="resume-actions">
+                    <button class="btn btn-primary" id="watchAdBtn" style="background: linear-gradient(135deg, var(--glow-yellow) 0%, var(--glow-orange) 100%); box-shadow: 0 4px 15px rgba(249, 212, 35, 0.4);">
+                        🏃 Resume Running
+                    </button>
+                    <button class="btn" id="restartGameBtn" style="padding: 15px 20px;">
+                        Restart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- GAME OVER SCREEN -->
+        <div class="ui-screen hidden" id="gameOverScreen">
+            <h1 class="retro-title" style="color: var(--glow-orange); filter: drop-shadow(0 0 10px rgba(255, 78, 80, 0.5));" id="deathReason">YOU FROZE COLD!</h1>
+            <h2 class="sub-title">You slipped or froze in the corridor</h2>
+            
+            <p style="color: var(--text-secondary); margin-bottom: 30px;" id="deathAdvice">
+                Try slowing down on wet tiles to maintain grip, and jump over the mops!
+            </p>
+
+            <button class="btn btn-primary" id="retryBtn">
+                <span>Play Again</span> 🔄
+            </button>
+        </div>
+
+        <div class="ui-screen hidden" id="victoryScreen">
+            <h1 class="retro-title" id="victoryTitle" style="color: var(--glow-green); filter: drop-shadow(0 0 10px rgba(0, 255, 135, 0.5));">WARM & COZY!</h1>
+            <h2 class="sub-title" id="victorySubTitle">You reached the towel and survived the bathhouse!</h2>
+
+            <div class="win-stat-group">
+                <div class="win-stat">
+                    <div class="win-stat-label">Time Taken</div>
+                    <div class="win-stat-value" id="statTime">00.0s</div>
+                </div>
+                <div class="win-stat">
+                    <div class="win-stat-label">Mops Jumped</div>
+                    <div class="win-stat-value" id="statMops">0</div>
+                </div>
+                <div class="win-stat">
+                    <div class="win-stat-label">Resumes Used</div>
+                    <div class="win-stat-value" id="statAds">0</div>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                <button class="btn btn-primary" id="nextLevelBtn" style="background: linear-gradient(135deg, var(--glow-yellow) 0%, #00e5ff 100%); box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);">
+                    <span>Next Level</span> ➡️
+                </button>
+                <button class="btn" id="winRetryBtn" style="padding: 12px 25px;">
+                    <span>Restart Level</span> 🔄
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="sprite-processor.js?v=1.0.5"></script>
+    <script src="game.js?v=1.0.5"></script>
+    
+    <script>
+        // Generate decorative ambient steam clouds in the background DOM
+        const container = document.getElementById('ambientSteam');
+        const numberOfClouds = 8;
+        for (let i = 0; i < numberOfClouds; i++) {
+            const cloud = document.createElement('div');
+            cloud.className = 'steam-cloud';
+            cloud.style.width = (150 + Math.random() * 200) + 'px';
+            cloud.style.height = (150 + Math.random() * 200) + 'px';
+            cloud.style.left = (Math.random() * 100) + 'vw';
+            cloud.style.animationDelay = (Math.random() * -20) + 's';
+            cloud.style.animationDuration = (15 + Math.random() * 15) + 's';
+            container.appendChild(cloud);
+        }
+    </script>
+</body>
+</html>
