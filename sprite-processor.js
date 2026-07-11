@@ -4,8 +4,15 @@ class SpriteProcessor {
         this.originalWidth = 1024;
         this.originalHeight = 559;
         this.frameCount = 4;
-        this.frameWidth = this.originalWidth / this.frameCount; // 256
-        this.frameHeight = this.originalHeight; // 559
+        // Exact per-frame pixel boundaries detected from the sprite sheet.
+        // Each sprite character occupies a different width because the source
+        // image is not uniformly divided.
+        this.frameBounds = [
+            { x: 29,  w: 241 }, // frame 0 – left foot forward
+            { x: 281, w: 224 }, // frame 1 – stride peak
+            { x: 516, w: 211 }, // frame 2 – right foot forward
+            { x: 742, w: 265 }  // frame 3 – slide / both feet down
+        ];
     }
 
     /**
@@ -71,19 +78,21 @@ class SpriteProcessor {
         }
         ctx.putImageData(imgData, 0, 0);
 
-        // Slice into 4 frames and crop each frame
+        // Slice into frames using exact per-frame boundaries, then crop each
         const slicedFrames = [];
         for (let f = 0; f < this.frameCount; f++) {
+            const bounds = this.frameBounds[f];
+
             const frameCanvas = document.createElement("canvas");
-            frameCanvas.width = this.frameWidth;
-            frameCanvas.height = this.frameHeight;
+            frameCanvas.width = bounds.w;
+            frameCanvas.height = this.originalHeight;
             const frameCtx = frameCanvas.getContext("2d");
 
-            // Copy frame from main canvas
+            // Copy exactly the detected content region for this frame
             frameCtx.drawImage(
                 canvas,
-                f * this.frameWidth, 0, this.frameWidth, this.frameHeight,
-                0, 0, this.frameWidth, this.frameHeight
+                bounds.x, 0, bounds.w, this.originalHeight,
+                0, 0, bounds.w, this.originalHeight
             );
 
             // Crop the frame to tightest bounding box
