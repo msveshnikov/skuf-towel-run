@@ -1710,9 +1710,11 @@ function animatePlayer() {
         return;
     }
 
-    // Run cycle animation speed based on velocity
+    // Run cycle animation speed based on velocity.
+    // We cap the increment so sprinting doesn't make legs blur — max 0.18 per frame (~11fps cycle).
     if (Math.abs(player.speed) > 0.3) {
-        player.animTimer += Math.abs(player.speed) * 0.12;
+        const animIncrement = Math.min(Math.abs(player.speed) * 0.045, 0.18);
+        player.animTimer += animIncrement;
         player.animFrame = Math.floor(player.animTimer) % 4; // cycle through frames 0-3
     } else {
         player.animFrame = 0; // idle standing
