@@ -301,9 +301,21 @@ let gameState = STATES.START;
 const gameAudio = new GameAudio();
 
 // Asset setup
-const spriteProcessor = new SpriteProcessor();
+const spriteProcessor = new SpriteProcessor({
+    width: 1024, height: 559, frameCount: 4,
+    frameBounds: [
+        { x: 29,  w: 241 }, // frame 0 – left foot forward
+        { x: 281, w: 224 }, // frame 1 – stride peak
+        { x: 516, w: 211 }, // frame 2 – right foot forward
+        { x: 742, w: 265 }  // frame 3 – slide / both feet down
+    ]
+});
 let playerSprites = []; // Array of processed canvases
 let spritesLoaded = false;
+
+// Granny sprites (mop_lady / bucket_lady)
+let grannySprites = [];      // [idle+bucket, mop-raised, mop-low, mop-extended]
+let grannySpritesLoaded = false;
 
 // Game entities and metrics
 let player = {
@@ -1425,73 +1437,53 @@ function drawEntities() {
                 ctx.fillRect(windLeft, windTop, obs.windWidth, 50);
                 break;
 
-            case 'bucket_lady':
-                // Draw pixel lady throwing water
-                // Base structure (Babushka figure: purple coat, yellow headscarf)
-                ctx.fillStyle = '#4b285c'; // purple coat
-                ctx.fillRect(obsX, obs.y + 20, obs.width, 60);
+            case 'bucket_lady': {
+                // Animate: idle=frame0, winding=frame1, throwing=frame2, returning=frame3
+                let grannyFrame = 0;
+                if (obs.state === 'winding') grannyFrame = 1;
+                else if (obs.state === 'throwing') grannyFrame = 2;
 
-                ctx.fillStyle = '#ffcc44'; // headscarf
-                ctx.beginPath();
-                ctx.arc(obsX + obs.width / 2, obs.y + 12, 12, 0, Math.PI * 2);
-                ctx.fill();
-                
-                ctx.fillStyle = '#ffddbb'; // face skin
-                ctx.fillRect(obsX + obs.width / 2 - 8, obs.y + 8, 12, 10);
-                
-                // Draw bucket arm based on throw animation state
-                ctx.fillStyle = '#a0a0a0'; // bucket silver
-                if (obs.state === 'idle') {
-                    // Arm hanging down with bucket
+                if (grannySpritesLoaded && grannySprites.length > 0) {
+                    drawGrannySprite(obsX + obs.width / 2, obs.y + obs.height, grannyFrame);
+                } else {
+                    // Fallback vector
                     ctx.fillStyle = '#4b285c';
-                    ctx.fillRect(obsX - 10, obs.y + 35, 12, 20); // arm
-                    ctx.fillStyle = '#7a7a7a';
-                    ctx.fillRect(obsX - 14, obs.y + 55, 16, 18); // bucket
-                } else if (obs.state === 'winding') {
-                    // Pull bucket back
-                    ctx.fillStyle = '#4b285c';
-                    ctx.fillRect(obsX + obs.width - 5, obs.y + 25, 15, 12); // arm back
-                    ctx.fillStyle = '#7a7a7a';
-                    ctx.fillRect(obsX + obs.width + 5, obs.y + 15, 16, 18);
-                } else if (obs.state === 'throwing') {
-                    // Arm pointed left
-                    ctx.fillStyle = '#4b285c';
-                    ctx.fillRect(obsX - 25, obs.y + 25, 25, 12); // arm forward
-                    ctx.fillStyle = '#7a7a7a';
-                    ctx.fillRect(obsX - 35, obs.y + 22, 18, 16); // bucket sideways
+                    ctx.fillRect(obsX, obs.y + 20, obs.width, 60);
+                    ctx.fillStyle = '#ffcc44';
+                    ctx.beginPath();
+                    ctx.arc(obsX + obs.width / 2, obs.y + 12, 12, 0, Math.PI * 2);
+                    ctx.fill();
                 }
                 break;
+            }
 
-            case 'mop_lady':
-                // Draw lady swinging mop
-                ctx.fillStyle = '#204b6b'; // blue apron
-                ctx.fillRect(obsX, obs.y + 20, obs.width, 60);
-                
-                ctx.fillStyle = '#ff6b6b'; // red scarf
-                ctx.beginPath();
-                ctx.arc(obsX + obs.width / 2, obs.y + 12, 12, 0, Math.PI * 2);
-                ctx.fill();
+            case 'mop_lady': {
+                // Animate: mop swing phase drives frame selection
+                const mopPhase = (Math.sin(obs.swipeTimer) + 1) / 2; // 0..1
+                const grannyMopFrame = mopPhase < 0.33 ? 1 : (mopPhase < 0.66 ? 2 : 3);
 
-                ctx.fillStyle = '#ffddbb'; // face
-                ctx.fillRect(obsX + obs.width / 2 - 8, obs.y + 8, 12, 10);
-
-                // Draw mop stick and head
-                const mopWorldX = obs.mopX - cameraX;
-                
-                // Mop wood pole (connecting mop lady arm to mop head)
-                ctx.strokeStyle = '#c48f5e';
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(obsX + obs.width / 2 - 5, obs.y + 40);
-                ctx.lineTo(mopWorldX, 412);
-                ctx.stroke();
-
-                // Mop shaggy head
-                ctx.fillStyle = '#eaf0f8'; // white cotton mops
-                ctx.fillRect(mopWorldX - 15, 408, 30, 12);
-                ctx.fillStyle = '#b2c0cc';
-                ctx.fillRect(mopWorldX - 12, 406, 24, 3); // band
+                if (grannySpritesLoaded && grannySprites.length > 0) {
+                    drawGrannySprite(obsX + obs.width / 2, obs.y + obs.height, grannyMopFrame);
+                } else {
+                    // Fallback vector (no sprites) — draw body + mop
+                    ctx.fillStyle = '#204b6b';
+                    ctx.fillRect(obsX, obs.y + 20, obs.width, 60);
+                    ctx.fillStyle = '#ff6b6b';
+                    ctx.beginPath();
+                    ctx.arc(obsX + obs.width / 2, obs.y + 12, 12, 0, Math.PI * 2);
+                    ctx.fill();
+                    const mopWorldX = obs.mopX - cameraX;
+                    ctx.strokeStyle = '#c48f5e';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(obsX + obs.width / 2 - 5, obs.y + 40);
+                    ctx.lineTo(mopWorldX, 412);
+                    ctx.stroke();
+                    ctx.fillStyle = '#eaf0f8';
+                    ctx.fillRect(mopWorldX - 15, 408, 30, 12);
+                }
                 break;
+            }
 
             case 'scrub_machine':
                 // Red industrial scrubbing vehicle
@@ -1552,16 +1544,13 @@ function drawFloorReflection() {
         const obsX = obs.x - cameraX;
         if (obsX < -150 || obsX > 1110) return;
         
-        if (obs.type === 'bucket_lady') {
-            ctx.fillStyle = '#4b285c';
-            ctx.fillRect(obsX, obs.y + 20, obs.width, 60);
-        } else if (obs.type === 'mop_lady') {
-            ctx.fillStyle = '#204b6b';
-            ctx.fillRect(obsX, obs.y + 20, obs.width, 60);
-            
-            const mopWorldX = obs.mopX - cameraX;
-            ctx.fillStyle = '#eaf0f8';
-            ctx.fillRect(mopWorldX - 15, 408, 30, 12);
+        if (obs.type === 'bucket_lady' || obs.type === 'mop_lady') {
+            if (grannySpritesLoaded && grannySprites.length > 0) {
+                drawGrannySprite(obsX + obs.width / 2, obs.y + obs.height, 0, true);
+            } else {
+                ctx.fillStyle = obs.type === 'bucket_lady' ? '#4b285c' : '#204b6b';
+                ctx.fillRect(obsX, obs.y + 20, obs.width, 60);
+            }
         } else if (obs.type === 'scrub_machine') {
             ctx.fillStyle = '#bd2222';
             ctx.fillRect(obsX, obs.y, obs.width, obs.height);
@@ -1747,17 +1736,43 @@ function loop() {
     requestAnimationFrame(loop);
 }
 
+// Draws a granny sprite centred at (cx, feetY) using given frame index.
+// isReflection=true renders at reduced opacity (called by drawFloorReflection).
+function drawGrannySprite(cx, feetY, frameIndex = 0, isReflection = false) {
+    if (!grannySpritesLoaded || grannySprites.length === 0) return;
+    const frame = grannySprites[Math.min(frameIndex, grannySprites.length - 1)];
+    // Render granny at a consistent height of ~100px (matches obs.height * 1.2)
+    const renderH = 110;
+    const scale = renderH / frame.height;
+    const renderW = frame.width * scale;
+    ctx.save();
+    if (isReflection) ctx.globalAlpha *= 0.5;
+    ctx.drawImage(frame, cx - renderW / 2, feetY - renderH, renderW, renderH);
+    ctx.restore();
+}
+
 // --- Preload sprites and boot ---
 async function init() {
     try {
         console.log("Loading sprite sheets...");
-        // Load sprite sheet and convert background dynamically to transparent
+        // Load skuf (player) sprite sheet
         playerSprites = await spriteProcessor.loadAndProcess('assets/skuf_sprites.jpg');
         spritesLoaded = true;
-        console.log("Sprites loaded and transparently cropped successfully!", playerSprites);
+        console.log("Player sprites loaded!", playerSprites);
     } catch (e) {
-        console.error("Sprite sheet loading failed, loading retro fallback shapes.", e);
+        console.error("Player sprite sheet loading failed, using fallback.", e);
         spritesLoaded = false;
+    }
+
+    try {
+        // Load granny sprite sheet
+        const grannyProcessor = new SpriteProcessor(window.GRANNY_SPRITE_CONFIG);
+        grannySprites = await grannyProcessor.loadAndProcess('assets/granny_sprites.jpg');
+        grannySpritesLoaded = true;
+        console.log("Granny sprites loaded!", grannySprites);
+    } catch (e) {
+        console.error("Granny sprite sheet loading failed, using fallback vectors.", e);
+        grannySpritesLoaded = false;
     }
     
     // Start game loop

@@ -1,18 +1,10 @@
 class SpriteProcessor {
-    constructor() {
+    constructor(opts = {}) {
         this.frames = [];
-        this.originalWidth = 1024;
-        this.originalHeight = 559;
-        this.frameCount = 4;
-        // Exact per-frame pixel boundaries detected from the sprite sheet.
-        // Each sprite character occupies a different width because the source
-        // image is not uniformly divided.
-        this.frameBounds = [
-            { x: 29,  w: 241 }, // frame 0 – left foot forward
-            { x: 281, w: 224 }, // frame 1 – stride peak
-            { x: 516, w: 211 }, // frame 2 – right foot forward
-            { x: 742, w: 265 }  // frame 3 – slide / both feet down
-        ];
+        this.originalWidth  = opts.width  || 1024;
+        this.originalHeight = opts.height || 559;
+        this.frameCount     = opts.frameCount || 4;
+        this.frameBounds    = opts.frameBounds; // required: [{x, w}, ...]
     }
 
     /**
@@ -168,3 +160,19 @@ class SpriteProcessor {
     }
 }
 window.SpriteProcessor = SpriteProcessor;
+
+// --- Granny Sprite Sheet Config ---
+// Frame boundaries detected via pixel-column analysis of granny_sprites.jpg (1024x559)
+// Frame 0: bucket_lady idle  | Frame 1: mop winding up
+// Frame 2: mop swept forward | Frame 3: mop follow-through
+window.GRANNY_SPRITE_CONFIG = {
+    width: 1024,
+    height: 559,
+    frameCount: 4,
+    frameBounds: [
+        { x: 55,  w: 219 }, // frame 0 – idle with bucket
+        { x: 310, w: 198 }, // frame 1 – mop raised / winding
+        { x: 532, w: 246 }, // frame 2 – mop swept low
+        { x: 788, w: 224 }  // frame 3 – mop extended
+    ]
+};
