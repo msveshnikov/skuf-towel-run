@@ -6,20 +6,20 @@ A **retro-arcade HTML5 runner game** set in a steamy Russian bathhouse. Run 500 
 
 ## 🎮 Gameplay
 
-| Goal | Run 500 meters to the warm towel at the end of the bathhouse corridor |
-|---|---|
+| Goal        | Run 500 meters to the warm towel at the end of the bathhouse corridor            |
+| ----------- | -------------------------------------------------------------------------------- |
 | Temperature | Getting hit by fans or cold water drops your body temp. Hit 0% → instant freeze! |
-| Traction | Running fast on wet tiles wears down grip. Hit 0% → you slip and fall! |
-| Levels | Each completed level increases difficulty and obstacle density |
+| Traction    | Running fast on wet tiles wears down grip. Hit 0% → you slip and fall!           |
+| Levels      | Each completed level increases difficulty and obstacle density                   |
 
 ### Controls
 
-| Key | Action |
-|---|---|
-| `D` / `→` | Accelerate (faster but slippery) |
-| `A` / `←` | Decelerate (safer, restores traction) |
-| `Space` / `W` / `↑` | Jump (dodge mops & water pools) |
-| `S` / `↓` | Duck / Slide (avoid ceiling fans) |
+| Key                 | Action                                |
+| ------------------- | ------------------------------------- |
+| `D` / `→`           | Accelerate (faster but slippery)      |
+| `A` / `←`           | Decelerate (safer, restores traction) |
+| `Space` / `W` / `↑` | Jump (dodge mops & water pools)       |
+| `S` / `↓`           | Duck / Slide (avoid ceiling fans)     |
 
 **Mobile**: On-screen touch buttons are displayed automatically on small screens.
 
@@ -88,14 +88,14 @@ The game is fully installable as a Progressive Web App. Open it in Chrome/Edge a
 
 ## 🛠️ Technical Details
 
-| Technology | Usage |
-|---|---|
-| HTML5 Canvas | Game rendering (960×540 px) |
-| Vanilla JavaScript | All game logic, physics, audio |
-| Web Audio API | Procedural SFX + chiptune BGM |
-| CSS Animations | UI transitions, steam clouds, CRT effects |
-| Service Worker | Offline asset caching |
-| PWA Manifest | Installable web app |
+| Technology         | Usage                                     |
+| ------------------ | ----------------------------------------- |
+| HTML5 Canvas       | Game rendering (960×540 px)               |
+| Vanilla JavaScript | All game logic, physics, audio            |
+| Web Audio API      | Procedural SFX + chiptune BGM             |
+| CSS Animations     | UI transitions, steam clouds, CRT effects |
+| Service Worker     | Offline asset caching                     |
+| PWA Manifest       | Installable web app                       |
 
 ---
 

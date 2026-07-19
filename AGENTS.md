@@ -14,15 +14,15 @@ The game targets a **960×540 px canvas** and runs at 60 fps via `requestAnimati
 
 ## Architecture & File Responsibilities
 
-| File | Responsibility |
-|---|---|
-| `index.html` | Game shell: canvas element, all UI screens (Start, Game Over, Victory, Resume), HUD overlay, mobile controls, PWA boilerplate |
-| `game.js` | **Core engine** — game loop, physics, collision detection, obstacle spawning, level progression, player state, HUD updates, audio calls |
-| `sprite-processor.js` | Sprite sheet loader: reads `skuf_sprites.jpg` and `granny_sprites.jpg`, slices frames, exposes them to `game.js` |
-| `style.css` | All visual styling: CRT overlay, scanline effect, steam clouds, HUD bars, UI screens, mobile controls, button styles |
-| `sw.js` | Service Worker: caches all static assets for PWA offline support |
-| `manifest.json` | PWA manifest: app name, icons, display mode, theme colours |
-| `assets/` | Static sprites and PWA icons — do not modify sprite sheets without updating frame counts in `sprite-processor.js` |
+| File                  | Responsibility                                                                                                                          |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `index.html`          | Game shell: canvas element, all UI screens (Start, Game Over, Victory, Resume), HUD overlay, mobile controls, PWA boilerplate           |
+| `game.js`             | **Core engine** — game loop, physics, collision detection, obstacle spawning, level progression, player state, HUD updates, audio calls |
+| `sprite-processor.js` | Sprite sheet loader: reads `skuf_sprites.jpg` and `granny_sprites.jpg`, slices frames, exposes them to `game.js`                        |
+| `style.css`           | All visual styling: CRT overlay, scanline effect, steam clouds, HUD bars, UI screens, mobile controls, button styles                    |
+| `sw.js`               | Service Worker: caches all static assets for PWA offline support                                                                        |
+| `manifest.json`       | PWA manifest: app name, icons, display mode, theme colours                                                                              |
+| `assets/`             | Static sprites and PWA icons — do not modify sprite sheets without updating frame counts in `sprite-processor.js`                       |
 
 ---
 
@@ -49,27 +49,31 @@ The game targets a **960×540 px canvas** and runs at 60 fps via `requestAnimati
 ## Common Tasks
 
 ### Adding a new obstacle type
+
 1. Define the obstacle's spawn logic in the `ObstacleManager` class inside `game.js`.
 2. Add a `draw()` case for it in the canvas render pass.
 3. Add collision detection in the player update loop.
 4. If it has a visual effect (e.g. temperature drain), update `Player.applyHazardEffect()`.
 
 ### Adding a new level
+
 Levels are configured via an array of difficulty descriptors near the top of `game.js`. Increment `LEVEL_COUNT` and add a new entry with the desired obstacle density, speed multiplier, and hazard mix.
 
 ### Changing game balance
+
 Tune the following constants at the top of `game.js`:
 
-| Constant | Effect |
-|---|---|
-| `BASE_SPEED` | Starting scroll speed |
-| `MAX_SPEED` | Speed cap |
-| `TEMP_DECAY_RATE` | How fast temperature drops per hazard hit |
-| `TRACTION_DECAY_RATE` | How fast traction decays at high speed |
-| `TRACTION_REGEN_RATE` | Traction recovery when decelerating |
-| `LEVEL_DISTANCE` | Meters required to complete a level |
+| Constant              | Effect                                    |
+| --------------------- | ----------------------------------------- |
+| `BASE_SPEED`          | Starting scroll speed                     |
+| `MAX_SPEED`           | Speed cap                                 |
+| `TEMP_DECAY_RATE`     | How fast temperature drops per hazard hit |
+| `TRACTION_DECAY_RATE` | How fast traction decays at high speed    |
+| `TRACTION_REGEN_RATE` | Traction recovery when decelerating       |
+| `LEVEL_DISTANCE`      | Meters required to complete a level       |
 
 ### Updating sprites
+
 - Sprite sheets live in `assets/skuf_sprites.jpg` and `assets/granny_sprites.jpg`.
 - Frame dimensions and counts are configured in `sprite-processor.js`.
 - If you replace a sheet, update `FRAME_WIDTH`, `FRAME_HEIGHT`, and `FRAME_COUNT` in `sprite-processor.js` to match.

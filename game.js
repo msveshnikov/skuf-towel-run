@@ -983,7 +983,7 @@ function applyLevelTheme() {
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
     root.style.setProperty('--cloud-color', `rgba(${r}, ${g}, ${b}, 0.08)`);
-    
+
     document.body.style.background = `radial-gradient(circle at center, ${theme.bodyBg} 0%, #08090d 100%)`;
 }
 
