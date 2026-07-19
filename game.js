@@ -364,56 +364,184 @@ let LEVEL_END_X = 5000; // overridden by level config
 let currentLevel = 1;
 const LEVEL_CONFIGS = [
     {
-        // Level 1 — Public Baths
+        // Level 1 — Public Baths (Aqua Palace) — TUTORIAL
         id: 1,
         name: 'Public Baths',
+        theme: 'aqua',
         length: 5000,
-        coolingRate: 0.022,
-        floorBase: '#121620',
-        floorTile: '#141924',
-        floorWet: 'rgba(0, 242, 254, 0.08)',
-        groutColor: '#1d2333',
-        fanWeight: 0.25,
-        bucketWeight: 0.55,
-        mopWeight: 0.80,
-        // rest = scrub_machine
-        radiatorSpacing: 1100,
-        minSpacing: 350,
+        coolingRate: 0.018,
+        floorBase: '#0d3d7a',
+        floorTile: '#1a4a8a',
+        floorWet: 'rgba(86, 204, 242, 0.14)',
+        groutColor: '#2d7ed4',
+        fanWeight: 0.20,
+        bucketWeight: 0.50,
+        mopWeight: 0.75,
+        radiatorSpacing: 900,
+        minSpacing: 400,
         maxSpacingJitter: 300
     },
     {
-        // Level 2 — Steam Sauna Rooms
+        // Level 2 — Steam Sauna Rooms — EASY
         id: 2,
         name: 'Steam Sauna Rooms',
-        length: 6500,
-        coolingRate: 0.026,
+        theme: 'sauna',
+        length: 6000,
+        coolingRate: 0.024,
         floorBase: '#1a0d08',
         floorTile: '#2b1612',
         floorWet: 'rgba(255, 123, 0, 0.10)',
         groutColor: '#3a1a0e',
         fanWeight: 0.15,
-        bucketWeight: 0.50,
+        bucketWeight: 0.55,
         mopWeight: 0.80,
-        radiatorSpacing: 1300,
-        minSpacing: 280,
+        radiatorSpacing: 1100,
+        minSpacing: 320,
         maxSpacingJitter: 260
     },
     {
-        // Level 3 — VIP Draft Hallway
+        // Level 3 — VIP Draft Hallway — MEDIUM
         id: 3,
         name: 'VIP Draft Hallway',
-        length: 8000,
-        coolingRate: 0.032,
+        theme: 'ice',
+        length: 7000,
+        coolingRate: 0.030,
         floorBase: '#060f14',
         floorTile: '#112330',
         floorWet: 'rgba(144, 224, 239, 0.12)',
         groutColor: '#1a3545',
-        fanWeight: 0.45,   // lots of fans!
+        fanWeight: 0.45,
+        bucketWeight: 0.62,
+        mopWeight: 0.82,
+        radiatorSpacing: 1300,
+        minSpacing: 270,
+        maxSpacingJitter: 240
+    },
+    {
+        // Level 4 — Jungle Spa — MEDIUM+
+        id: 4,
+        name: 'Jungle Spa',
+        theme: 'jungle',
+        length: 7500,
+        coolingRate: 0.033,
+        floorBase: '#0a1f0a',
+        floorTile: '#122b12',
+        floorWet: 'rgba(80, 200, 80, 0.13)',
+        groutColor: '#1e4a1e',
+        fanWeight: 0.35,
         bucketWeight: 0.60,
-        mopWeight: 0.80,
+        mopWeight: 0.82,
+        radiatorSpacing: 1400,
+        minSpacing: 250,
+        maxSpacingJitter: 230
+    },
+    {
+        // Level 5 — Volcanic Hot Springs — HARD
+        id: 5,
+        name: 'Volcanic Hot Springs',
+        theme: 'volcano',
+        length: 8000,
+        coolingRate: 0.038,
+        floorBase: '#1a0500',
+        floorTile: '#2a0800',
+        floorWet: 'rgba(255, 60, 0, 0.15)',
+        groutColor: '#4a1000',
+        fanWeight: 0.40,
+        bucketWeight: 0.65,
+        mopWeight: 0.85,
         radiatorSpacing: 1500,
-        minSpacing: 220,
-        maxSpacingJitter: 220
+        minSpacing: 230,
+        maxSpacingJitter: 210
+    },
+    {
+        // Level 6 — Arctic Ice Pool — HARD+
+        id: 6,
+        name: 'Arctic Ice Pool',
+        theme: 'arctic',
+        length: 8500,
+        coolingRate: 0.044,
+        floorBase: '#0a1a2a',
+        floorTile: '#102235',
+        floorWet: 'rgba(200, 240, 255, 0.20)',
+        groutColor: '#1e4060',
+        fanWeight: 0.55,
+        bucketWeight: 0.68,
+        mopWeight: 0.85,
+        radiatorSpacing: 1600,
+        minSpacing: 210,
+        maxSpacingJitter: 200
+    },
+    {
+        // Level 7 — Underground Cistern — VERY HARD
+        id: 7,
+        name: 'Underground Cistern',
+        theme: 'cistern',
+        length: 9000,
+        coolingRate: 0.050,
+        floorBase: '#0d0820',
+        floorTile: '#18103a',
+        floorWet: 'rgba(160, 100, 255, 0.14)',
+        groutColor: '#2a1860',
+        fanWeight: 0.50,
+        bucketWeight: 0.70,
+        mopWeight: 0.87,
+        radiatorSpacing: 1700,
+        minSpacing: 195,
+        maxSpacingJitter: 190
+    },
+    {
+        // Level 8 — Neon Nightclub Pool — VERY HARD+
+        id: 8,
+        name: 'Neon Nightclub Pool',
+        theme: 'neon',
+        length: 9500,
+        coolingRate: 0.055,
+        floorBase: '#1a0020',
+        floorTile: '#280030',
+        floorWet: 'rgba(255, 0, 200, 0.15)',
+        groutColor: '#4a0060',
+        fanWeight: 0.60,
+        bucketWeight: 0.72,
+        mopWeight: 0.88,
+        radiatorSpacing: 1800,
+        minSpacing: 180,
+        maxSpacingJitter: 180
+    },
+    {
+        // Level 9 — Rooftop Infinity Pool — EXTREME
+        id: 9,
+        name: 'Rooftop Infinity Pool',
+        theme: 'rooftop',
+        length: 10500,
+        coolingRate: 0.062,
+        floorBase: '#050d18',
+        floorTile: '#0a1825',
+        floorWet: 'rgba(100, 200, 255, 0.18)',
+        groutColor: '#142a40',
+        fanWeight: 0.65,
+        bucketWeight: 0.75,
+        mopWeight: 0.90,
+        radiatorSpacing: 2000,
+        minSpacing: 165,
+        maxSpacingJitter: 170
+    },
+    {
+        // Level 10 — The Final Chamber — MAX DIFFICULTY
+        id: 10,
+        name: 'The Final Chamber',
+        theme: 'final',
+        length: 12000,
+        coolingRate: 0.072,
+        floorBase: '#100000',
+        floorTile: '#1a0000',
+        floorWet: 'rgba(255, 30, 30, 0.20)',
+        groutColor: '#380000',
+        fanWeight: 0.70,
+        bucketWeight: 0.80,
+        mopWeight: 0.92,
+        radiatorSpacing: 2200,
+        minSpacing: 150,
+        maxSpacingJitter: 160
     }
 ];
 
@@ -576,6 +704,63 @@ window.addEventListener('keyup', (e) => {
             break;
     }
 });
+
+// --- Touch Screen Mobile Controls Setup ---
+const btnLeft = document.getElementById('btnLeft');
+const btnRight = document.getElementById('btnRight');
+const btnJump = document.getElementById('btnJump');
+const btnDuck = document.getElementById('btnDuck');
+
+if (btnLeft) {
+    btnLeft.addEventListener('touchstart', (e) => { e.preventDefault(); keys.left = true; });
+    btnLeft.addEventListener('touchend', (e) => { e.preventDefault(); keys.left = false; });
+    btnLeft.addEventListener('touchcancel', (e) => { e.preventDefault(); keys.left = false; });
+}
+if (btnRight) {
+    btnRight.addEventListener('touchstart', (e) => { e.preventDefault(); keys.right = true; });
+    btnRight.addEventListener('touchend', (e) => { e.preventDefault(); keys.right = false; });
+    btnRight.addEventListener('touchcancel', (e) => { e.preventDefault(); keys.right = false; });
+}
+if (btnJump) {
+    btnJump.addEventListener('touchstart', (e) => { e.preventDefault(); keys.up = true; });
+    btnJump.addEventListener('touchend', (e) => { e.preventDefault(); keys.up = false; });
+    btnJump.addEventListener('touchcancel', (e) => { e.preventDefault(); keys.up = false; });
+}
+if (btnDuck) {
+    btnDuck.addEventListener('touchstart', (e) => { e.preventDefault(); keys.down = true; });
+    btnDuck.addEventListener('touchend', (e) => { e.preventDefault(); keys.down = false; });
+    btnDuck.addEventListener('touchcancel', (e) => { e.preventDefault(); keys.down = false; });
+}
+
+// Automatically show mobile controls if a touch device is detected
+function detectTouchDevice() {
+    const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+    if (isTouch) {
+        const mobileControls = document.getElementById('mobileControls');
+        if (mobileControls) mobileControls.classList.add('visible');
+        
+        // Hide standard keyboard control badges
+        const controlsReminder = document.getElementById('controlsReminder');
+        if (controlsReminder) controlsReminder.style.display = 'none';
+    }
+}
+detectTouchDevice();
+
+// --- Responsive Game Wrapper Scaling ---
+function scaleGame() {
+    const wrapper = document.querySelector('.game-wrapper');
+    if (!wrapper) return;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    
+    // Scale to fit screen dimension (maximum fit)
+    const scale = Math.min(w / 960, h / 540);
+    wrapper.style.transform = `scale(${scale})`;
+}
+window.addEventListener('resize', scaleGame);
+window.addEventListener('load', scaleGame);
+scaleGame();
+setTimeout(scaleGame, 100);
 
 // UI Buttons Event Listeners
 document.getElementById('startBtn').addEventListener('click', () => {
@@ -1242,86 +1427,248 @@ function isFloorWetAt(worldX) {
 
 // --- Drawing & Rendering Layout ---
 
+// --- Aqua Palace dot-mosaic starfish helper ---
+function drawStarfish(x, y, r, t) {
+    // 5-armed starfish shape filled with multicolored circles (Aqua Palace logo style)
+    const dotColors = [
+        '#e8543a','#f5a623','#f9e054','#6fcf97','#56ccf2',
+        '#bb6bd9','#eb5757','#2d9cdb','#27ae60','#f2994a'
+    ];
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(t);
+    // Draw arm silhouette first (dark blue)
+    ctx.fillStyle = 'rgba(12, 52, 110, 0.75)';
+    ctx.beginPath();
+    for (let a = 0; a < 5; a++) {
+        const outerA = (a / 5) * Math.PI * 2 - Math.PI / 2;
+        const innerA = outerA + Math.PI / 5;
+        const ox = Math.cos(outerA) * r;
+        const oy = Math.sin(outerA) * r;
+        const ix = Math.cos(innerA) * r * 0.35;
+        const iy = Math.sin(innerA) * r * 0.35;
+        a === 0 ? ctx.moveTo(ox, oy) : ctx.lineTo(ox, oy);
+        ctx.lineTo(ix, iy);
+    }
+    ctx.closePath();
+    ctx.fill();
+    // Overlay colorful dots
+    const seed = Math.floor(x * 7 + y * 13);
+    let d = 0;
+    for (let ring = 0; ring <= Math.floor(r / 6); ring++) {
+        const ringR = ring * 6;
+        const count = ring === 0 ? 1 : ring * 5;
+        for (let j = 0; j < count; j++) {
+            const ang = (j / count) * Math.PI * 2;
+            const dx = Math.cos(ang) * ringR;
+            const dy = Math.sin(ang) * ringR;
+            // Only draw dots inside the star shape — skip corners
+            const inStar = Math.sqrt(dx*dx+dy*dy) < r * 0.72;
+            if (!inStar) continue;
+            ctx.fillStyle = dotColors[(seed + d++) % dotColors.length];
+            ctx.beginPath();
+            ctx.arc(dx, dy, 2.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+    ctx.restore();
+}
+
 function drawParallaxBackground() {
-    // Clear viewport
-    ctx.fillStyle = '#0a0d14';
-    ctx.fillRect(0, 0, 960, 540);
+    // --- Sky / Wall base: Aqua Palace royal blue ---
+    ctx.fillStyle = '#1a4a8a';
+    ctx.fillRect(0, 0, 960, 420);
 
-    // Layer 0: Tiled Distant Wall (Slowest scroll)
-    const bg0Scroll = -cameraX * 0.15;
-    ctx.fillStyle = '#11141c';
-    // Draw background stripes/tiles
-    for (let x = (bg0Scroll % 240) - 240; x < 960 + 240; x += 240) {
-        ctx.fillRect(x, 0, 110, 420);
-        
-        // Draw window showing snow storm outside
-        ctx.fillStyle = '#05070d';
-        ctx.fillRect(x + 10, 80, 90, 110);
-        ctx.fillStyle = 'rgba(0, 242, 254, 0.08)'; // frosted glow
-        ctx.fillRect(x + 10, 80, 90, 110);
-        
-        // Window frames
-        ctx.strokeStyle = '#181d26';
-        ctx.lineWidth = 4;
-        ctx.strokeRect(x + 10, 80, 90, 110);
-        ctx.beginPath();
-        ctx.moveTo(x + 55, 80); ctx.lineTo(x + 55, 190);
-        ctx.moveTo(x + 10, 135); ctx.lineTo(x + 100, 135);
-        ctx.stroke();
+    // Subtle vertical gradient overlay (lighter at top)
+    const wallGrad = ctx.createLinearGradient(0, 0, 0, 420);
+    wallGrad.addColorStop(0, 'rgba(80, 140, 220, 0.28)');
+    wallGrad.addColorStop(1, 'rgba(10, 35, 80, 0.35)');
+    ctx.fillStyle = wallGrad;
+    ctx.fillRect(0, 0, 960, 420);
 
-        // Draw snow particles falling outside window
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-        for (let s = 0; s < 4; s++) {
-            const snowX = x + 15 + ((runTimer * 0.4 + s * 30) % 80);
-            const snowY = 85 + ((runTimer * 0.8 + s * 25) % 100);
-            ctx.fillRect(snowX, snowY, 2, 2);
+    // ---- Layer 0: Far wall — arched windows with aqua water views ----
+    const bg0Scroll = -cameraX * 0.12;
+    for (let x = (bg0Scroll % 280) - 280; x < 960 + 280; x += 280) {
+        // Pillar between windows
+        const pillarGrad = ctx.createLinearGradient(x + 195, 0, x + 235, 0);
+        pillarGrad.addColorStop(0, '#1e5fa8');
+        pillarGrad.addColorStop(0.4, '#2d7ed4');
+        pillarGrad.addColorStop(1, '#163d72');
+        ctx.fillStyle = pillarGrad;
+        ctx.fillRect(x + 195, 40, 40, 380);
+
+        // Pillar capital (top decorative band)
+        ctx.fillStyle = '#4aacdf';
+        ctx.fillRect(x + 190, 35, 50, 8);
+        ctx.fillStyle = '#2d7ed4';
+        ctx.fillRect(x + 192, 43, 46, 4);
+
+        // Mosaic dot trim on pillar
+        for (let py = 60; py < 380; py += 22) {
+            const dotCol = ['#56ccf2','#f5a623','#6fcf97','#eb5757','#bb6bd9'][(Math.floor(py/22) + Math.floor(x/280)) % 5];
+            ctx.fillStyle = dotCol;
+            ctx.beginPath();
+            ctx.arc(x + 215, py, 3, 0, Math.PI * 2);
+            ctx.fill();
         }
 
-        ctx.fillStyle = '#11141c'; // restore color
+        // Arched window opening
+        const winX = x + 20;
+        const winW = 170;
+        const archH = 60;
+        const winY = 60;
+        const winBodyH = 200;
+
+        // Window: water view inside (animated shimmer)
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(winX, winY + archH);
+        ctx.lineTo(winX, winY + archH + winBodyH);
+        ctx.lineTo(winX + winW, winY + archH + winBodyH);
+        ctx.lineTo(winX + winW, winY + archH);
+        ctx.arc(winX + winW/2, winY + archH, winW/2, 0, Math.PI, true);
+        ctx.closePath();
+        ctx.clip();
+
+        // Water gradient inside window
+        const waterGrad = ctx.createLinearGradient(winX, winY, winX, winY + archH + winBodyH);
+        waterGrad.addColorStop(0, '#0077b6');
+        waterGrad.addColorStop(0.5, '#00b4d8');
+        waterGrad.addColorStop(1, '#48cae4');
+        ctx.fillStyle = waterGrad;
+        ctx.fillRect(winX, winY, winW, archH + winBodyH);
+
+        // Animated water ripple lines inside window
+        ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+        ctx.lineWidth = 1.5;
+        for (let wy = 0; wy < winBodyH; wy += 18) {
+            const rippleOff = Math.sin(runTimer * 0.03 + wy * 0.3 + x * 0.01) * 8;
+            ctx.beginPath();
+            ctx.moveTo(winX, winY + archH + wy + rippleOff);
+            ctx.bezierCurveTo(
+                winX + winW*0.33, winY + archH + wy + rippleOff - 5,
+                winX + winW*0.66, winY + archH + wy + rippleOff + 5,
+                winX + winW, winY + archH + wy + rippleOff
+            );
+            ctx.stroke();
+        }
+        ctx.restore();
+
+        // Window arch frame (decorative gold border)
+        ctx.strokeStyle = '#f5c842';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(winX, winY + archH);
+        ctx.lineTo(winX, winY + archH + winBodyH);
+        ctx.lineTo(winX + winW, winY + archH + winBodyH);
+        ctx.lineTo(winX + winW, winY + archH);
+        ctx.arc(winX + winW/2, winY + archH, winW/2, 0, Math.PI, true);
+        ctx.closePath();
+        ctx.stroke();
+
+        // Keystone dot at arch peak
+        ctx.fillStyle = '#f5c842';
+        ctx.beginPath();
+        ctx.arc(winX + winW/2, winY + 4, 7, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Sill at bottom of window
+        ctx.fillStyle = '#2d7ed4';
+        ctx.fillRect(winX - 5, winY + archH + winBodyH, winW + 10, 10);
+        ctx.fillStyle = '#4aacdf';
+        ctx.fillRect(winX - 5, winY + archH + winBodyH, winW + 10, 3);
     }
 
-    // Layer 1: Piping & lockers (Medium scroll)
-    const bg1Scroll = -cameraX * 0.45;
+    // ---- Layer 0.5: Wave frieze near ceiling ----
+    ctx.strokeStyle = 'rgba(74, 172, 223, 0.5)';
+    ctx.lineWidth = 2;
+    for (let wx = -40; wx < 960 + 40; wx += 80) {
+        const waveOff = -cameraX * 0.12;
+        const wx2 = ((wx + waveOff) % 960 + 960) % 960;
+        ctx.beginPath();
+        ctx.arc(wx2 + 40, 28, 22, Math.PI, 0, false);
+        ctx.stroke();
+    }
+    // Second wave row
+    ctx.strokeStyle = 'rgba(86, 204, 242, 0.3)';
+    for (let wx = -40; wx < 960 + 40; wx += 80) {
+        const waveOff = -cameraX * 0.12 + 40;
+        const wx2 = ((wx + waveOff) % 960 + 960) % 960;
+        ctx.beginPath();
+        ctx.arc(wx2 + 40, 18, 16, Math.PI, 0, false);
+        ctx.stroke();
+    }
+
+    // ---- Layer 1: Nearer wall band — mosaic tile wainscoting ----
+    const bg1Scroll = -cameraX * 0.4;
+    // Wainscoting base
+    ctx.fillStyle = '#1155a0';
+    ctx.fillRect(0, 320, 960, 100);
+    ctx.fillStyle = '#4aacdf';
+    ctx.fillRect(0, 318, 960, 4); // top accent stripe
+    ctx.fillStyle = '#0d3d7a';
+    ctx.fillRect(0, 416, 960, 4); // bottom accent stripe
+
+    // Mosaic squares in the wainscoting
+    const mosaicColors = ['#56ccf2','#2d9cdb','#1a4a8a','#0077b6','#48cae4','#00b4d8'];
+    for (let x = (bg1Scroll % 12) - 12; x < 960 + 12; x += 12) {
+        for (let y = 322; y < 414; y += 12) {
+            const ci = (Math.floor((x + bg1Scroll) / 12) * 7 + Math.floor(y / 12) * 3) & 0xfff;
+            ctx.fillStyle = mosaicColors[ci % mosaicColors.length];
+            ctx.fillRect(x + 1, y + 1, 10, 10);
+        }
+    }
+
+    // ---- Starfish decorations on wall ----
+    const sfScroll = -cameraX * 0.25;
+    for (let sx = (sfScroll % 400) - 400; sx < 960 + 400; sx += 400) {
+        // Large decorative starfish, slowly rotating
+        const sfRot = runTimer * 0.003 + sx * 0.005;
+        drawStarfish(sx + 200, 185, 48, sfRot);
+
+        // Small accent starfish
+        drawStarfish(sx + 50, 290, 22, -sfRot * 1.3);
+        drawStarfish(sx + 350, 260, 18, sfRot * 0.8);
+    }
+
+    // ---- Layer 2: Near pipes — recoloured in aqua palette ----
     for (let x = (bg1Scroll % 320) - 320; x < 960 + 320; x += 320) {
-        // Draw locker group
-        ctx.fillStyle = '#1d222d';
-        ctx.fillRect(x + 40, 180, 100, 240);
-        ctx.fillStyle = '#222836';
-        ctx.fillRect(x + 45, 185, 42, 230);
-        ctx.fillRect(x + 93, 185, 42, 230);
-        // Lock details
-        ctx.fillStyle = '#0f1118';
-        ctx.fillRect(x + 78, 280, 4, 15);
-        ctx.fillRect(x + 97, 280, 4, 15);
-        
-        // Draw copper steam pipes
-        ctx.fillStyle = '#4c2e26';
-        ctx.fillRect(x - 60, 45, 320, 12);
-        ctx.fillStyle = '#7a493d';
-        ctx.fillRect(x - 60, 45, 320, 4); // Highlight line
+        // Horizontal aqua pipe
+        ctx.fillStyle = '#0d5fa8';
+        ctx.fillRect(x - 60, 45, 320, 10);
+        ctx.fillStyle = '#4aacdf';
+        ctx.fillRect(x - 60, 45, 320, 3);
+
+        // Pipe joint
+        ctx.fillStyle = '#f5c842';
+        ctx.fillRect(x + 100, 40, 14, 20);
+        ctx.fillStyle = '#d4a800';
+        ctx.fillRect(x + 102, 42, 10, 16);
     }
 
-    // Draw Radiators (Layer 1.5)
+    // ---- Draw Radiators (unchanged positions, aqua recolour) ----
     radiators.forEach(rad => {
         const radX = rad.x - cameraX;
         if (radX < -100 || radX > 1060) return;
 
-        // Radiator drawing: dark copper base with vertical warming fins
-        ctx.fillStyle = '#3a2620';
+        ctx.fillStyle = '#0d3d7a';
         ctx.fillRect(radX, rad.y, rad.width, rad.height);
-        
-        // Fins
-        ctx.fillStyle = '#784638';
+
+        ctx.fillStyle = '#1a6ab8';
         const numFins = 8;
         const finWidth = rad.width / numFins;
         for (let i = 0; i < numFins; i++) {
             ctx.fillRect(radX + i * finWidth + 2, rad.y + 5, finWidth - 4, rad.height - 10);
         }
-        
-        // Valve / Pipes
-        ctx.fillStyle = '#ff7b54'; // glowing heat valve
+
+        // Glowing heat valve — aqua glow
+        ctx.fillStyle = '#56ccf2';
         ctx.fillRect(radX - 10, rad.y + 40, 10, 15);
-        ctx.fillStyle = '#8f4f3d';
+        ctx.shadowColor = '#00f2fe';
+        ctx.shadowBlur = 8;
+        ctx.fillRect(radX - 10, rad.y + 40, 10, 15);
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = '#0d3d7a';
         ctx.fillRect(radX - 15, rad.y + rad.height - 20, 15, 10);
     });
 }
@@ -1726,7 +2073,8 @@ function loop() {
         drawParticles();
         drawEntities();
 
-        // Player model drawing
+        // Player water pool + model drawing
+        drawWaterPool();
         drawPlayerSprite(player.x - cameraX, player.y);
 
         // Update HUD dials
@@ -1734,6 +2082,56 @@ function loop() {
     }
 
     requestAnimationFrame(loop);
+}
+
+// --- Water pool under player ---
+function drawWaterPool() {
+    if (!player.isOnGround) return; // only when standing / running on floor
+
+    const cx = player.x - cameraX + player.width / 2;
+    const cy = 420; // floor Y
+    const baseRx = player.width * 0.8 + Math.abs(player.speed) * 1.2; // wider when sprinting
+    const ry = 7 + Math.abs(player.speed) * 0.3;
+
+    // Pulse driven by footsteps (anim frame changes)
+    const pulse = Math.abs(Math.sin(player.animTimer * 0.8)) * 4;
+
+    // Outer glow ring
+    ctx.save();
+    ctx.globalAlpha = 0.18;
+    ctx.fillStyle = '#48cae4';
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, baseRx + 10 + pulse, ry + 4, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Main pool body
+    ctx.globalAlpha = 0.38;
+    const poolGrad = ctx.createRadialGradient(cx, cy, 2, cx, cy, baseRx + pulse);
+    poolGrad.addColorStop(0, '#90e0ef');
+    poolGrad.addColorStop(0.5, '#00b4d8');
+    poolGrad.addColorStop(1, 'rgba(0, 119, 182, 0)');
+    ctx.fillStyle = poolGrad;
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, baseRx + pulse, ry, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Specular highlight
+    ctx.globalAlpha = 0.55;
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+    ctx.beginPath();
+    ctx.ellipse(cx - baseRx * 0.18, cy - 1, baseRx * 0.3, ry * 0.4, -0.3, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Ripple rings that expand outward (timed to footstep)
+    const rippleT = player.animTimer % 1.0;
+    ctx.globalAlpha = (1 - rippleT) * 0.25;
+    ctx.strokeStyle = '#56ccf2';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, baseRx * (0.5 + rippleT * 0.8), ry * (0.5 + rippleT * 0.6), 0, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.restore();
 }
 
 // Draws a granny sprite centred at (cx, feetY) using given frame index.

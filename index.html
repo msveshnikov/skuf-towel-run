@@ -2,10 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Skuf's Wet Floor Run - A challenging HTML5 retro-arcade game. Run across a wet floor, dodge cold water splashes and mop sweeps, and reach the warm towel without freezing or slipping!">
     <title>Skuf's Wet Floor Run - Bathhouse Challenge</title>
+    
+    <!-- PWA Manifest & App configuration -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a4a8a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
     <link rel="stylesheet" href="style.css">
+    
+    <script>
+        // Register PWA Service Worker for offline play support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((reg) => console.log('PWA Service Worker registered successfully!', reg.scope))
+                    .catch((err) => console.error('PWA Service Worker registration failed:', err));
+            });
+        }
+    </script>
     <script>
         window.onerror = function(message, source, lineno, colno, error) {
             const errDiv = document.createElement('div');
@@ -135,7 +154,17 @@
             </div>
         </div>
 
-
+        <!-- Touch Screen Mobile Controls Overlay -->
+        <div class="mobile-controls-overlay" id="mobileControls">
+            <div class="mobile-direction-keys">
+                <button class="mobile-btn" id="btnLeft" aria-label="Move Left">◀</button>
+                <button class="mobile-btn" id="btnRight" aria-label="Move Right">▶</button>
+            </div>
+            <div class="mobile-action-keys">
+                <button class="mobile-btn action-btn-jump" id="btnJump" aria-label="Jump">JUMP</button>
+                <button class="mobile-btn action-btn-duck" id="btnDuck" aria-label="Duck / Slide">SLIDE</button>
+            </div>
+        </div>
 
         <!-- GAME OVER SCREEN -->
         <div class="ui-screen hidden" id="gameOverScreen">
@@ -181,8 +210,8 @@
         </div>
     </div>
 
-    <script src="sprite-processor.js?v=1.0.9"></script>
-    <script src="game.js?v=1.0.9"></script>
+    <script src="sprite-processor.js?v=1.1.3"></script>
+    <script src="game.js?v=1.1.3"></script>
     
     <script>
         // Generate decorative ambient steam clouds in the background DOM
