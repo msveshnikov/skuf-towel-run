@@ -545,8 +545,446 @@ const LEVEL_CONFIGS = [
     }
 ];
 
+// --- Theme Configs for Different Colors / Graphics ---
+const THEME_CONFIGS = {
+    aqua: {
+        wallBg: '#1a4a8a',
+        wallGradStart: 'rgba(80, 140, 220, 0.28)',
+        wallGradEnd: 'rgba(10, 35, 80, 0.35)',
+        pillarGradLeft: '#1e5fa8',
+        pillarGradMid: '#2d7ed4',
+        pillarGradRight: '#163d72',
+        pillarCapital1: '#4aacdf',
+        pillarCapital2: '#2d7ed4',
+        pillarDeco: 'mosaic_dots',
+        windowType: 'arch',
+        windowGradStart: '#0077b6',
+        windowGradEnd: '#48cae4',
+        windowRippleType: 'water',
+        windowRippleColor: 'rgba(255, 255, 255, 0.18)',
+        windowFrameColor: '#f5c842',
+        friezeType: 'wave',
+        friezeColor1: 'rgba(74, 172, 223, 0.5)',
+        friezeColor2: 'rgba(86, 204, 242, 0.3)',
+        wainscotingColor: '#1155a0',
+        wainscotingStripeTop: '#4aacdf',
+        wainscotingStripeBottom: '#0d3d7a',
+        mosaicColors: ['#56ccf2', '#2d9cdb', '#1a4a8a', '#0077b6', '#48cae4', '#00b4d8'],
+        decorType: 'starfish',
+        pipeColor: '#0d5fa8',
+        pipeHighlight: '#4aacdf',
+        pipeJoint1: '#f5c842',
+        pipeJoint2: '#d4a800',
+        radiatorColor: '#0d3d7a',
+        radiatorFinColor: '#1a6ab8',
+        radiatorValveColor: '#56ccf2',
+        radiatorValveGlow: '#00f2fe',
+        waterPoolColor1: '#48cae4',
+        waterPoolColor2: '#90e0ef',
+        waterPoolColor3: '#00b4d8',
+        waterPoolColor4: 'rgba(0, 119, 182, 0)',
+        waterPoolRippleColor: '#56ccf2',
+        glowColor: '#00f2fe',
+        bodyBg: '#1b2030',
+        cardBg: 'rgba(22, 26, 38, 0.7)'
+    },
+    sauna: {
+        wallBg: '#2b1612',
+        wallGradStart: 'rgba(78, 46, 40, 0.4)',
+        wallGradEnd: 'rgba(26, 10, 7, 0.5)',
+        pillarGradLeft: '#3e2723',
+        pillarGradMid: '#4e342e',
+        pillarGradRight: '#27120c',
+        pillarCapital1: '#8d6e63',
+        pillarCapital2: '#5d4037',
+        pillarDeco: 'wood_grain',
+        windowType: 'rect',
+        windowGradStart: '#e65100',
+        windowGradEnd: '#ffcc80',
+        windowRippleType: 'steam_haze',
+        windowRippleColor: 'rgba(255, 255, 255, 0.1)',
+        windowFrameColor: '#ff9800',
+        friezeType: 'none',
+        friezeColor1: 'rgba(141, 110, 99, 0.5)',
+        friezeColor2: 'rgba(93, 64, 55, 0.3)',
+        wainscotingColor: '#1d0b08',
+        wainscotingStripeTop: '#5d4037',
+        wainscotingStripeBottom: '#3e2723',
+        mosaicColors: ['#5d4037', '#4e342e', '#3e2723', '#8d6e63', '#d7ccc8', '#ffe0b2'],
+        decorType: 'thermometer',
+        pipeColor: '#a1887f',
+        pipeHighlight: '#d7ccc8',
+        pipeJoint1: '#ff9800',
+        pipeJoint2: '#e65100',
+        radiatorColor: '#4e342e',
+        radiatorFinColor: '#5d4037',
+        radiatorValveColor: '#ff9800',
+        radiatorValveGlow: '#ff5722',
+        waterPoolColor1: '#ff7b00',
+        waterPoolColor2: '#ffb74d',
+        waterPoolColor3: '#e65100',
+        waterPoolColor4: 'rgba(230, 81, 0, 0)',
+        waterPoolRippleColor: '#ff5722',
+        glowColor: '#ff9800',
+        bodyBg: '#1e0d07',
+        cardBg: 'rgba(38, 20, 15, 0.75)'
+    },
+    ice: {
+        wallBg: '#0e1a24',
+        wallGradStart: 'rgba(32, 58, 67, 0.4)',
+        wallGradEnd: 'rgba(15, 32, 39, 0.5)',
+        pillarGradLeft: '#152e3c',
+        pillarGradMid: '#22485e',
+        pillarGradRight: '#0d1f2b',
+        pillarCapital1: '#4fc3f7',
+        pillarCapital2: '#0288d1',
+        pillarDeco: 'frost_lines',
+        windowType: 'arch',
+        windowGradStart: '#00bcd4',
+        windowGradEnd: '#e0f7fa',
+        windowRippleType: 'bubbles',
+        windowRippleColor: 'rgba(255, 255, 255, 0.3)',
+        windowFrameColor: '#b0bec5',
+        friezeType: 'icicle',
+        friezeColor1: 'rgba(79, 195, 247, 0.4)',
+        friezeColor2: 'rgba(224, 247, 250, 0.3)',
+        wainscotingColor: '#091118',
+        wainscotingStripeTop: '#4fc3f7',
+        wainscotingStripeBottom: '#1b3648',
+        mosaicColors: ['#b2ebf2', '#80deea', '#4dd0e1', '#26c6da', '#00bcd4', '#0097a7'],
+        decorType: 'beer_mug',
+        pipeColor: '#90a4ae',
+        pipeHighlight: '#cfd8dc',
+        pipeJoint1: '#00bcd4',
+        pipeJoint2: '#00838f',
+        radiatorColor: '#263238',
+        radiatorFinColor: '#37474f',
+        radiatorValveColor: '#80deea',
+        radiatorValveGlow: '#00bcd4',
+        waterPoolColor1: '#80deea',
+        waterPoolColor2: '#e0f7fa',
+        waterPoolColor3: '#00bcd4',
+        waterPoolColor4: 'rgba(0, 188, 212, 0)',
+        waterPoolRippleColor: '#26c6da',
+        glowColor: '#a5f3fc',
+        bodyBg: '#091016',
+        cardBg: 'rgba(15, 25, 35, 0.75)'
+    },
+    jungle: {
+        wallBg: '#081a08',
+        wallGradStart: 'rgba(27, 67, 28, 0.35)',
+        wallGradEnd: 'rgba(5, 14, 5, 0.45)',
+        pillarGradLeft: '#133814',
+        pillarGradMid: '#1e5320',
+        pillarGradRight: '#0d250e',
+        pillarCapital1: '#81c784',
+        pillarCapital2: '#4caf50',
+        pillarDeco: 'leaf_veins',
+        windowType: 'arch',
+        windowGradStart: '#2e7d32',
+        windowGradEnd: '#81c784',
+        windowRippleType: 'leaves',
+        windowRippleColor: 'rgba(200, 255, 200, 0.25)',
+        windowFrameColor: '#ffeb3b',
+        friezeType: 'ivy',
+        friezeColor1: 'rgba(129, 199, 132, 0.5)',
+        friezeColor2: 'rgba(76, 175, 80, 0.3)',
+        wainscotingColor: '#040e04',
+        wainscotingStripeTop: '#4caf50',
+        wainscotingStripeBottom: '#1b5e20',
+        mosaicColors: ['#a5d6a7', '#81c784', '#66bb6a', '#4caf50', '#43a047', '#2e7d32'],
+        decorType: 'flower',
+        pipeColor: '#4caf50',
+        pipeHighlight: '#a5d6a7',
+        pipeJoint1: '#c8e6c9',
+        pipeJoint2: '#81c784',
+        radiatorColor: '#1b5e20',
+        radiatorFinColor: '#2e7d32',
+        radiatorValveColor: '#81c784',
+        radiatorValveGlow: '#4caf50',
+        waterPoolColor1: '#66bb6a',
+        waterPoolColor2: '#a5d6a7',
+        waterPoolColor3: '#388e3c',
+        waterPoolColor4: 'rgba(56, 142, 60, 0)',
+        waterPoolRippleColor: '#81c784',
+        glowColor: '#4ade80',
+        bodyBg: '#041004',
+        cardBg: 'rgba(15, 30, 15, 0.75)'
+    },
+    volcano: {
+        wallBg: '#140400',
+        wallGradStart: 'rgba(62, 10, 0, 0.45)',
+        wallGradEnd: 'rgba(10, 2, 0, 0.55)',
+        pillarGradLeft: '#1f0500',
+        pillarGradMid: '#2a0800',
+        pillarGradRight: '#120200',
+        pillarCapital1: '#ff3d00',
+        pillarCapital2: '#dd2c00',
+        pillarDeco: 'lava_cracks',
+        windowType: 'rect',
+        windowGradStart: '#b71c1c',
+        windowGradEnd: '#ff3d00',
+        windowRippleType: 'magma',
+        windowRippleColor: 'rgba(255, 60, 0, 0.35)',
+        windowFrameColor: '#ffb300',
+        friezeType: 'none',
+        friezeColor1: 'rgba(255, 61, 0, 0.4)',
+        friezeColor2: 'rgba(221, 44, 0, 0.2)',
+        wainscotingColor: '#0c0100',
+        wainscotingStripeTop: '#ff3d00',
+        wainscotingStripeBottom: '#3e0a00',
+        mosaicColors: ['#ff8a80', '#ff5252', '#ff1744', '#d500f0', '#ffd740', '#ff9100'],
+        decorType: 'fire',
+        pipeColor: '#37474f',
+        pipeHighlight: '#ff5722',
+        pipeJoint1: '#ff5722',
+        pipeJoint2: '#dd2c00',
+        radiatorColor: '#212121',
+        radiatorFinColor: '#303030',
+        radiatorValveColor: '#ff1744',
+        radiatorValveGlow: '#ff9100',
+        waterPoolColor1: '#ff3d00',
+        waterPoolColor2: '#ffb74d',
+        waterPoolColor3: '#dd2c00',
+        waterPoolColor4: 'rgba(221, 44, 0, 0)',
+        waterPoolRippleColor: '#ff9100',
+        glowColor: '#f97316',
+        bodyBg: '#100200',
+        cardBg: 'rgba(30, 10, 5, 0.8)'
+    },
+    arctic: {
+        wallBg: '#061320',
+        wallGradStart: 'rgba(13, 44, 71, 0.4)',
+        wallGradEnd: 'rgba(4, 10, 16, 0.5)',
+        pillarGradLeft: '#0b2238',
+        pillarGradMid: '#12395c',
+        pillarGradRight: '#061626',
+        pillarCapital1: '#80d8ff',
+        pillarCapital2: '#40c4ff',
+        pillarDeco: 'icicles',
+        windowType: 'arch',
+        windowGradStart: '#0091ea',
+        windowGradEnd: '#40c4ff',
+        windowRippleType: 'snow',
+        windowRippleColor: 'rgba(255, 255, 255, 0.45)',
+        windowFrameColor: '#e0f7fa',
+        friezeType: 'icicle',
+        friezeColor1: 'rgba(128, 216, 255, 0.5)',
+        friezeColor2: 'rgba(224, 247, 250, 0.35)',
+        wainscotingColor: '#030b14',
+        wainscotingStripeTop: '#80d8ff',
+        wainscotingStripeBottom: '#0091ea',
+        mosaicColors: ['#e0f7fa', '#b2ebf2', '#80deea', '#4dd0e1', '#00e5ff', '#00b0ff'],
+        decorType: 'snowflake',
+        pipeColor: '#4fc3f7',
+        pipeHighlight: '#ffffff',
+        pipeJoint1: '#e0f7fa',
+        pipeJoint2: '#00e5ff',
+        radiatorColor: '#1c3144',
+        radiatorFinColor: '#007ebb',
+        radiatorValveColor: '#00e5ff',
+        radiatorValveGlow: '#e0f7fa',
+        waterPoolColor1: '#00e5ff',
+        waterPoolColor2: '#e0f7fa',
+        waterPoolColor3: '#00b0ff',
+        waterPoolColor4: 'rgba(0, 176, 255, 0)',
+        waterPoolRippleColor: '#80d8ff',
+        glowColor: '#38bdf8',
+        bodyBg: '#050f18',
+        cardBg: 'rgba(10, 20, 30, 0.75)'
+    },
+    cistern: {
+        wallBg: '#12101a',
+        wallGradStart: 'rgba(35, 28, 54, 0.4)',
+        wallGradEnd: 'rgba(12, 10, 18, 0.5)',
+        pillarGradLeft: '#171324',
+        pillarGradMid: '#261f3b',
+        pillarGradRight: '#0f0c17',
+        pillarCapital1: '#9575cd',
+        pillarCapital2: '#673ab7',
+        pillarDeco: 'moss',
+        windowType: 'arch',
+        windowGradStart: '#120c1f',
+        windowGradEnd: '#512da8',
+        windowRippleType: 'dripping_water',
+        windowRippleColor: 'rgba(150, 100, 250, 0.25)',
+        windowFrameColor: '#b388ff',
+        friezeType: 'none',
+        friezeColor1: 'rgba(149, 117, 205, 0.4)',
+        friezeColor2: 'rgba(103, 58, 183, 0.2)',
+        wainscotingColor: '#08060d',
+        wainscotingStripeTop: '#673ab7',
+        wainscotingStripeBottom: '#311b92',
+        mosaicColors: ['#d1c4e9', '#b39ddb', '#9575cd', '#7e57c2', '#673ab7', '#5e35b1'],
+        decorType: 'lantern',
+        pipeColor: '#795548',
+        pipeHighlight: '#bcaaa4',
+        pipeJoint1: '#8d6e63',
+        pipeJoint2: '#5d4037',
+        radiatorColor: '#311b92',
+        radiatorFinColor: '#4527a0',
+        radiatorValveColor: '#b388ff',
+        radiatorValveGlow: '#673ab7',
+        waterPoolColor1: '#b388ff',
+        waterPoolColor2: '#d1c4e9',
+        waterPoolColor3: '#673ab7',
+        waterPoolColor4: 'rgba(103, 58, 183, 0)',
+        waterPoolRippleColor: '#9575cd',
+        glowColor: '#a8a29e',
+        bodyBg: '#0b0a10',
+        cardBg: 'rgba(20, 15, 30, 0.8)'
+    },
+    neon: {
+        wallBg: '#08000d',
+        wallGradStart: 'rgba(28, 0, 48, 0.4)',
+        wallGradEnd: 'rgba(4, 0, 8, 0.5)',
+        pillarGradLeft: '#10001c',
+        pillarGradMid: '#1e0033',
+        pillarGradRight: '#0a0012',
+        pillarCapital1: '#ff007f',
+        pillarCapital2: '#d500f9',
+        pillarDeco: 'neon_pulse',
+        windowType: 'rect',
+        windowGradStart: '#0a0010',
+        windowGradEnd: '#ff007f',
+        windowRippleType: 'equalizer',
+        windowRippleColor: 'rgba(0, 242, 254, 0.45)',
+        windowFrameColor: '#00f2fe',
+        friezeType: 'neon',
+        friezeColor1: '#ff007f',
+        friezeColor2: '#00f2fe',
+        wainscotingColor: '#040006',
+        wainscotingStripeTop: '#ff007f',
+        wainscotingStripeBottom: '#00f2fe',
+        mosaicColors: ['#ff007f', '#ff00ff', '#d500f9', '#8a2be2', '#00ffff', '#1e90ff'],
+        decorType: 'music_note',
+        pipeColor: '#ff00ff',
+        pipeHighlight: '#00ffff',
+        pipeJoint1: '#00ffff',
+        pipeJoint2: '#ff00ff',
+        radiatorColor: '#12001a',
+        radiatorFinColor: '#1a0026',
+        radiatorValveColor: '#ff007f',
+        radiatorValveGlow: '#00ffff',
+        waterPoolColor1: '#ff00ff',
+        waterPoolColor2: '#8a2be2',
+        waterPoolColor3: '#00ffff',
+        waterPoolColor4: 'rgba(0, 255, 255, 0)',
+        waterPoolRippleColor: '#ff007f',
+        glowColor: '#f43f5e',
+        bodyBg: '#07000c',
+        cardBg: 'rgba(25, 0, 40, 0.8)'
+    },
+    rooftop: {
+        wallBg: '#030914',
+        wallGradStart: 'rgba(13, 29, 51, 0.45)',
+        wallGradEnd: 'rgba(2, 5, 10, 0.55)',
+        pillarGradLeft: '#071526',
+        pillarGradMid: '#0e223c',
+        pillarGradRight: '#040a13',
+        pillarCapital1: '#ffb300',
+        pillarCapital2: '#ff6f00',
+        pillarDeco: 'city_lights',
+        windowType: 'arch',
+        windowGradStart: '#880e4f',
+        windowGradEnd: '#d81b60',
+        windowRippleType: 'clouds',
+        windowRippleColor: 'rgba(255, 179, 0, 0.3)',
+        windowFrameColor: '#ffb300',
+        friezeType: 'none',
+        friezeColor1: 'rgba(255, 111, 0, 0.5)',
+        friezeColor2: 'rgba(21, 101, 192, 0.3)',
+        wainscotingColor: '#010408',
+        wainscotingStripeTop: '#ff6f00',
+        wainscotingStripeBottom: '#1565c0',
+        mosaicColors: ['#ffe082', '#ffd54f', '#ffca28', '#ffb300', '#ff8f00', '#ff6f00'],
+        decorType: 'sun',
+        pipeColor: '#ffb300',
+        pipeHighlight: '#ffffff',
+        pipeJoint1: '#ffd54f',
+        pipeJoint2: '#ffb300',
+        radiatorColor: '#003050',
+        radiatorFinColor: '#004870',
+        radiatorValveColor: '#ffb300',
+        radiatorValveGlow: '#ffd54f',
+        waterPoolColor1: '#ffb300',
+        waterPoolColor2: '#ffe082',
+        waterPoolColor3: '#ff8f00',
+        waterPoolColor4: 'rgba(255, 143, 0, 0)',
+        waterPoolRippleColor: '#ffca28',
+        glowColor: '#ec4899',
+        bodyBg: '#05070e',
+        cardBg: 'rgba(15, 20, 30, 0.8)'
+    },
+    final: {
+        wallBg: '#0d0000',
+        wallGradStart: 'rgba(45, 0, 0, 0.45)',
+        wallGradEnd: 'rgba(5, 0, 0, 0.55)',
+        pillarGradLeft: '#150000',
+        pillarGradMid: '#220000',
+        pillarGradRight: '#0a0000',
+        pillarCapital1: '#ffc107',
+        pillarCapital2: '#d50000',
+        pillarDeco: 'runes',
+        windowType: 'rect',
+        windowGradStart: '#2d0000',
+        windowGradEnd: '#ffc107',
+        windowRippleType: 'power_vortex',
+        windowRippleColor: 'rgba(255, 215, 0, 0.35)',
+        windowFrameColor: '#ffc107',
+        friezeType: 'none',
+        friezeColor1: 'rgba(213, 0, 0, 0.5)',
+        friezeColor2: 'rgba(255, 193, 7, 0.3)',
+        wainscotingColor: '#070000',
+        wainscotingStripeTop: '#d50000',
+        wainscotingStripeBottom: '#ffc107',
+        mosaicColors: ['#ff8a80', '#ff5252', '#ff1744', '#d50000', '#ffd740', '#ffb300'],
+        decorType: 'runes',
+        pipeColor: '#ffd700',
+        pipeHighlight: '#ff1744',
+        pipeJoint1: '#ffd740',
+        pipeJoint2: '#ff1744',
+        radiatorColor: '#2d0000',
+        radiatorFinColor: '#3e0000',
+        radiatorValveColor: '#ffd700',
+        radiatorValveGlow: '#ff1744',
+        waterPoolColor1: '#ffd700',
+        waterPoolColor2: '#ff8a80',
+        waterPoolColor3: '#d50000',
+        waterPoolColor4: 'rgba(213, 0, 0, 0)',
+        waterPoolRippleColor: '#ff1744',
+        glowColor: '#fbbf24',
+        bodyBg: '#0a0000',
+        cardBg: 'rgba(25, 0, 0, 0.85)'
+    }
+};
+
+// Gets the theme configuration for the active level
+function getActiveTheme() {
+    const cfg = getLevelConfig();
+    return THEME_CONFIGS[cfg.theme] || THEME_CONFIGS.aqua;
+}
+
 function getLevelConfig() {
     return LEVEL_CONFIGS[currentLevel - 1] || LEVEL_CONFIGS[0];
+}
+
+// Applies theme CSS variables to the DOM
+function applyLevelTheme() {
+    const theme = getActiveTheme();
+    const root = document.documentElement;
+    root.style.setProperty('--glow-cyan', theme.glowColor);
+    root.style.setProperty('--bg-color', theme.bodyBg);
+    root.style.setProperty('--card-bg', theme.cardBg);
+    // Derive a translucent cloud color from the level's accent glow
+    // We parse the hex color and create a low-opacity rgba version for the ambient steam
+    const hex = theme.glowColor.replace('#', '');
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    root.style.setProperty('--cloud-color', `rgba(${r}, ${g}, ${b}, 0.08)`);
+    
+    document.body.style.background = `radial-gradient(circle at center, ${theme.bodyBg} 0%, #08090d 100%)`;
 }
 
 // Level maps, generated procedurally
@@ -577,6 +1015,7 @@ function generateLevel() {
     particles = [];
 
     const cfg = getLevelConfig();
+    applyLevelTheme();
     LEVEL_END_X = cfg.length;
 
     // Spawn radiators/heaters to warm up
@@ -895,7 +1334,7 @@ function triggerVictory() {
         titleEl.innerText = 'GRAND VICTORY! 🏆';
         titleEl.style.color = 'var(--glow-yellow)';
         titleEl.style.filter = 'drop-shadow(0 0 14px rgba(249, 212, 35, 0.7))';
-        subEl.innerText = 'You conquered all 3 levels of the bathhouse gauntlet!';
+        subEl.innerText = `You conquered all ${LEVEL_CONFIGS.length} levels of the bathhouse gauntlet!`;
         if (nextBtn) nextBtn.classList.add('hidden');
     } else {
         titleEl.innerText = `LEVEL ${currentLevel} CLEAR! 🎉`;
@@ -1428,189 +1867,613 @@ function isFloorWetAt(worldX) {
 // --- Drawing & Rendering Layout ---
 
 // --- Aqua Palace dot-mosaic starfish helper ---
-function drawStarfish(x, y, r, t) {
-    // 5-armed starfish shape filled with multicolored circles (Aqua Palace logo style)
-    const dotColors = [
-        '#e8543a', '#f5a623', '#f9e054', '#6fcf97', '#56ccf2',
-        '#bb6bd9', '#eb5757', '#2d9cdb', '#27ae60', '#f2994a'
-    ];
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(t);
-    // Draw arm silhouette first (dark blue)
-    ctx.fillStyle = 'rgba(12, 52, 110, 0.75)';
-    ctx.beginPath();
-    for (let a = 0; a < 5; a++) {
-        const outerA = (a / 5) * Math.PI * 2 - Math.PI / 2;
-        const innerA = outerA + Math.PI / 5;
-        const ox = Math.cos(outerA) * r;
-        const oy = Math.sin(outerA) * r;
-        const ix = Math.cos(innerA) * r * 0.35;
-        const iy = Math.sin(innerA) * r * 0.35;
-        a === 0 ? ctx.moveTo(ox, oy) : ctx.lineTo(ox, oy);
-        ctx.lineTo(ix, iy);
-    }
-    ctx.closePath();
-    ctx.fill();
-    // Overlay colorful dots
-    const seed = Math.floor(x * 7 + y * 13);
-    let d = 0;
-    for (let ring = 0; ring <= Math.floor(r / 6); ring++) {
-        const ringR = ring * 6;
-        const count = ring === 0 ? 1 : ring * 5;
-        for (let j = 0; j < count; j++) {
-            const ang = (j / count) * Math.PI * 2;
-            const dx = Math.cos(ang) * ringR;
-            const dy = Math.sin(ang) * ringR;
-            // Only draw dots inside the star shape — skip corners
-            const inStar = Math.sqrt(dx * dx + dy * dy) < r * 0.72;
-            if (!inStar) continue;
-            ctx.fillStyle = dotColors[(seed + d++) % dotColors.length];
+// --- Dynamic Wall Decor Helper for Different Themes ---
+function drawWallDecor(x, y, r, t, type, colors) {
+    if (type === 'starfish') {
+        const dotColors = colors || [
+            '#e8543a', '#f5a623', '#f9e054', '#6fcf97', '#56ccf2',
+            '#bb6bd9', '#eb5757', '#2d9cdb', '#27ae60', '#f2994a'
+        ];
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(t);
+        // Draw arm silhouette first (dark blue)
+        ctx.fillStyle = 'rgba(12, 52, 110, 0.75)';
+        ctx.beginPath();
+        for (let a = 0; a < 5; a++) {
+            const outerA = (a / 5) * Math.PI * 2 - Math.PI / 2;
+            const innerA = outerA + Math.PI / 5;
+            const ox = Math.cos(outerA) * r;
+            const oy = Math.sin(outerA) * r;
+            const ix = Math.cos(innerA) * r * 0.35;
+            const iy = Math.sin(innerA) * r * 0.35;
+            a === 0 ? ctx.moveTo(ox, oy) : ctx.lineTo(ox, oy);
+            ctx.lineTo(ix, iy);
+        }
+        ctx.closePath();
+        ctx.fill();
+        // Overlay colorful dots
+        const seed = Math.floor(x * 7 + y * 13);
+        let d = 0;
+        for (let ring = 0; ring <= Math.floor(r / 6); ring++) {
+            const ringR = ring * 6;
+            const count = ring === 0 ? 1 : ring * 5;
+            for (let j = 0; j < count; j++) {
+                const ang = (j / count) * Math.PI * 2;
+                const dx = Math.cos(ang) * ringR;
+                const dy = Math.sin(ang) * ringR;
+                const inStar = Math.sqrt(dx * dx + dy * dy) < r * 0.72;
+                if (!inStar) continue;
+                ctx.fillStyle = dotColors[(seed + d++) % dotColors.length];
+                ctx.beginPath();
+                ctx.arc(dx, dy, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        ctx.restore();
+    } else if (type === 'thermometer') {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(t * 0.1);
+        ctx.fillStyle = '#b71c1c';
+        ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#1d0b08';
+        ctx.beginPath(); ctx.arc(0, 0, r * 0.85, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#ff9800';
+        ctx.lineWidth = 1.5;
+        for (let a = 0; a < 8; a++) {
+            const ang = -Math.PI + (a / 7) * Math.PI;
             ctx.beginPath();
-            ctx.arc(dx, dy, 2.5, 0, Math.PI * 2);
+            ctx.moveTo(Math.cos(ang) * r * 0.6, Math.sin(ang) * r * 0.6);
+            ctx.lineTo(Math.cos(ang) * r * 0.75, Math.sin(ang) * r * 0.75);
+            ctx.stroke();
+        }
+        ctx.strokeStyle = '#ff3d00';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(Math.cos(0.5) * r * 0.7, Math.sin(0.5) * r * 0.7);
+        ctx.stroke();
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath(); ctx.arc(0, 0, 4, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+    } else if (type === 'beer_mug') {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(t * 0.3);
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.arc(r * 0.3, 0, r * 0.3, -Math.PI / 2, Math.PI / 2);
+        ctx.stroke();
+        ctx.fillStyle = '#f9d423';
+        ctx.fillRect(-r * 0.4, -r * 0.5, r * 0.7, r);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.fillRect(-r * 0.3, -r * 0.4, r * 0.1, r * 0.8);
+        ctx.fillRect(-r * 0.1, -r * 0.4, r * 0.1, r * 0.8);
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(-r * 0.35, -r * 0.55, r * 0.25, 0, Math.PI * 2);
+        ctx.arc(-r * 0.1, -r * 0.6, r * 0.25, 0, Math.PI * 2);
+        ctx.arc(r * 0.15, -r * 0.55, r * 0.25, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    } else if (type === 'flower') {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(t);
+        ctx.fillStyle = '#ff4081';
+        for (let i = 0; i < 5; i++) {
+            ctx.rotate(Math.PI * 2 / 5);
+            ctx.beginPath();
+            ctx.ellipse(0, -r * 0.6, r * 0.35, r * 0.5, 0, 0, Math.PI * 2);
             ctx.fill();
         }
+        ctx.fillStyle = '#ffeb3b';
+        ctx.beginPath();
+        ctx.arc(0, 0, r * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    } else if (type === 'fire') {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.fillStyle = '#37474f';
+        ctx.fillRect(-6, 0, 12, r * 0.7);
+        ctx.fillRect(-r * 0.4, r * 0.5, r * 0.8, 8);
+        const pulse = Math.abs(Math.sin(runTimer * 0.1)) * 5;
+        const flameR = r * 0.6 + pulse;
+        const fireGrad = ctx.createRadialGradient(0, -10, 2, 0, -15, flameR);
+        fireGrad.addColorStop(0, '#ffeb3b');
+        fireGrad.addColorStop(0.3, '#ff9100');
+        fireGrad.addColorStop(1, 'rgba(255, 61, 0, 0)');
+        ctx.fillStyle = fireGrad;
+        ctx.beginPath();
+        ctx.arc(0, -10, flameR, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    } else if (type === 'snowflake') {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(t * 0.5);
+        ctx.strokeStyle = '#e0f7fa';
+        ctx.lineWidth = 2.5;
+        for (let i = 0; i < 6; i++) {
+            ctx.rotate(Math.PI / 3);
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(0, -r * 0.95);
+            ctx.moveTo(0, -r * 0.5);
+            ctx.lineTo(-r * 0.25, -r * 0.7);
+            ctx.moveTo(0, -r * 0.5);
+            ctx.lineTo(r * 0.25, -r * 0.7);
+            ctx.stroke();
+        }
+        ctx.restore();
+    } else if (type === 'lantern') {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.strokeStyle = '#5d4037';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, -r);
+        ctx.lineTo(0, -r * 0.3);
+        ctx.stroke();
+        ctx.fillStyle = '#795548';
+        ctx.beginPath();
+        ctx.moveTo(-r * 0.4, -r * 0.3);
+        ctx.lineTo(r * 0.4, -r * 0.3);
+        ctx.lineTo(0, -r * 0.6);
+        ctx.closePath();
+        ctx.fill();
+        ctx.shadowColor = '#ffe082';
+        ctx.shadowBlur = 10;
+        ctx.fillStyle = '#fff9c4';
+        ctx.fillRect(-r * 0.25, -r * 0.3, r * 0.5, r * 0.65);
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = '#5d4037';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(-r * 0.25, -r * 0.3, r * 0.5, r * 0.65);
+        ctx.beginPath();
+        ctx.moveTo(-r * 0.25, 0); ctx.lineTo(r * 0.25, 0);
+        ctx.moveTo(0, -r * 0.3); ctx.lineTo(0, r * 0.35);
+        ctx.stroke();
+        ctx.restore();
+    } else if (type === 'music_note') {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(t * 0.4);
+        ctx.shadowColor = '#ff00ff';
+        ctx.shadowBlur = 8;
+        ctx.fillStyle = '#00ffff';
+        ctx.beginPath();
+        ctx.arc(-r * 0.3, r * 0.3, r * 0.22, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillRect(-r * 0.14, -r * 0.5, 4, r * 0.8);
+        ctx.beginPath();
+        ctx.arc(r * 0.2, r * 0.1, r * 0.22, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillRect(r * 0.36, -r * 0.7, 4, r * 0.8);
+        ctx.save();
+        ctx.rotate(-0.25);
+        ctx.fillRect(-r * 0.25, -r * 0.55, r * 0.75, 6);
+        ctx.restore();
+        ctx.shadowBlur = 0;
+        ctx.restore();
+    } else if (type === 'sun') {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.strokeStyle = 'rgba(255, 111, 0, 0.4)';
+        ctx.lineWidth = 2;
+        for (let i = 0; i < 8; i++) {
+            const ang = (i / 8) * Math.PI * 2;
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(Math.cos(ang) * r * 0.9, Math.sin(ang) * r * 0.9);
+            ctx.stroke();
+        }
+        const sunGrad = ctx.createLinearGradient(0, -r * 0.6, 0, r * 0.6);
+        sunGrad.addColorStop(0, '#ffd54f');
+        sunGrad.addColorStop(1, '#ff6f00');
+        ctx.fillStyle = sunGrad;
+        ctx.beginPath();
+        ctx.arc(0, 0, r * 0.6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    } else if (type === 'runes') {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(t * 0.2);
+        ctx.shadowColor = '#ff1744';
+        ctx.shadowBlur = 8;
+        ctx.strokeStyle = '#ffd700';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(0, -r * 0.85);
+        ctx.lineTo(r * 0.6, 0);
+        ctx.lineTo(0, r * 0.85);
+        ctx.lineTo(-r * 0.6, 0);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(0, -r * 0.85); ctx.lineTo(0, r * 0.85);
+        ctx.moveTo(-r * 0.6, 0); ctx.lineTo(r * 0.6, 0);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+        ctx.restore();
     }
-    ctx.restore();
 }
 
+// --- Dynamic Pillar Decoration Helper ---
+function drawPillarDeco(cx, startY, endY, decoType, colX) {
+    if (decoType === 'mosaic_dots') {
+        for (let py = startY; py < endY; py += 22) {
+            const dotCol = ['#56ccf2', '#f5a623', '#6fcf97', '#eb5757', '#bb6bd9'][(Math.floor(py / 22) + Math.floor(colX / 280)) % 5];
+            ctx.fillStyle = dotCol;
+            ctx.beginPath();
+            ctx.arc(cx, py, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    } else if (decoType === 'wood_grain') {
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(cx - 8, startY); ctx.lineTo(cx - 8, endY);
+        ctx.moveTo(cx + 8, startY); ctx.lineTo(cx + 8, endY);
+        ctx.stroke();
+    } else if (decoType === 'frost_lines') {
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (let py = startY; py < endY - 20; py += 30) {
+            ctx.moveTo(cx - 15, py);
+            ctx.lineTo(cx + 15, py + 20);
+            ctx.moveTo(cx + 15, py);
+            ctx.lineTo(cx - 15, py + 20);
+        }
+        ctx.stroke();
+    } else if (decoType === 'leaf_veins') {
+        ctx.strokeStyle = 'rgba(120, 220, 120, 0.25)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(cx, startY); ctx.lineTo(cx, endY);
+        for (let py = startY + 15; py < endY; py += 40) {
+            ctx.moveTo(cx, py); ctx.lineTo(cx - 10, py - 10);
+            ctx.moveTo(cx, py + 20); ctx.lineTo(cx + 10, py + 10);
+        }
+        ctx.stroke();
+    } else if (decoType === 'lava_cracks') {
+        ctx.strokeStyle = '#ff3d00';
+        ctx.shadowColor = '#ff9100';
+        ctx.shadowBlur = 4;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        let currentX = cx;
+        ctx.moveTo(currentX, startY);
+        for (let py = startY + 15; py < endY; py += 15) {
+            currentX += (Math.sin(py * 0.05 + colX) * 4);
+            ctx.lineTo(currentX, py);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+    } else if (decoType === 'icicles') {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        for (let py = startY + 10; py < endY; py += 50) {
+            ctx.beginPath();
+            ctx.moveTo(cx - 6, py);
+            ctx.lineTo(cx + 6, py);
+            ctx.lineTo(cx, py + 15);
+            ctx.closePath();
+            ctx.fill();
+        }
+    } else if (decoType === 'moss') {
+        ctx.fillStyle = 'rgba(46, 125, 50, 0.5)';
+        for (let py = startY + 30; py < endY; py += 60) {
+            ctx.beginPath();
+            ctx.arc(cx + Math.sin(py) * 8, py, 6 + Math.cos(py) * 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    } else if (decoType === 'neon_pulse') {
+        ctx.shadowColor = '#00f2fe';
+        ctx.shadowBlur = 8;
+        ctx.fillStyle = (runTimer % 40 < 20) ? '#ff007f' : '#00f2fe';
+        ctx.fillRect(cx - 3, startY, 6, endY - startY);
+        ctx.shadowBlur = 0;
+    } else if (decoType === 'city_lights') {
+        ctx.fillStyle = 'rgba(255, 215, 0, 0.75)';
+        for (let py = startY + 10; py < endY - 10; py += 24) {
+            ctx.fillRect(cx - 10, py, 4, 6);
+            ctx.fillRect(cx + 6, py, 4, 6);
+            if (Math.sin(py + colX) > 0) {
+                ctx.fillRect(cx - 2, py, 4, 6);
+            }
+        }
+    } else if (decoType === 'runes') {
+        ctx.fillStyle = '#ff1744';
+        ctx.shadowColor = '#ffd700';
+        ctx.shadowBlur = 6;
+        ctx.font = '8px monospace';
+        const runesSymbols = ['▼', '✦', '✥', '✚', '⚛', '⚜', '✵', '❖'];
+        for (let py = startY + 15; py < endY; py += 45) {
+            const sym = runesSymbols[Math.floor(py + colX) % runesSymbols.length];
+            ctx.fillText(sym, cx - 4, py);
+        }
+        ctx.shadowBlur = 0;
+    }
+}
+
+
 function drawParallaxBackground() {
-    // --- Sky / Wall base: Aqua Palace royal blue ---
-    ctx.fillStyle = '#1a4a8a';
+    const theme = getActiveTheme();
+
+    // 1. Sky / Wall base
+    ctx.fillStyle = theme.wallBg;
     ctx.fillRect(0, 0, 960, 420);
 
-    // Subtle vertical gradient overlay (lighter at top)
+    // Subtle vertical gradient overlay
     const wallGrad = ctx.createLinearGradient(0, 0, 0, 420);
-    wallGrad.addColorStop(0, 'rgba(80, 140, 220, 0.28)');
-    wallGrad.addColorStop(1, 'rgba(10, 35, 80, 0.35)');
+    wallGrad.addColorStop(0, theme.wallGradStart);
+    wallGrad.addColorStop(1, theme.wallGradEnd);
     ctx.fillStyle = wallGrad;
     ctx.fillRect(0, 0, 960, 420);
 
-    // ---- Layer 0: Far wall — arched windows with aqua water views ----
+    // ---- Layer 0: Far wall — windows and pillars ----
     const bg0Scroll = -cameraX * 0.12;
     for (let x = (bg0Scroll % 280) - 280; x < 960 + 280; x += 280) {
         // Pillar between windows
         const pillarGrad = ctx.createLinearGradient(x + 195, 0, x + 235, 0);
-        pillarGrad.addColorStop(0, '#1e5fa8');
-        pillarGrad.addColorStop(0.4, '#2d7ed4');
-        pillarGrad.addColorStop(1, '#163d72');
+        pillarGrad.addColorStop(0, theme.pillarGradLeft);
+        pillarGrad.addColorStop(0.4, theme.pillarGradMid);
+        pillarGrad.addColorStop(1, theme.pillarGradRight);
         ctx.fillStyle = pillarGrad;
         ctx.fillRect(x + 195, 40, 40, 380);
 
         // Pillar capital (top decorative band)
-        ctx.fillStyle = '#4aacdf';
+        ctx.fillStyle = theme.pillarCapital1;
         ctx.fillRect(x + 190, 35, 50, 8);
-        ctx.fillStyle = '#2d7ed4';
+        ctx.fillStyle = theme.pillarCapital2;
         ctx.fillRect(x + 192, 43, 46, 4);
 
-        // Mosaic dot trim on pillar
-        for (let py = 60; py < 380; py += 22) {
-            const dotCol = ['#56ccf2', '#f5a623', '#6fcf97', '#eb5757', '#bb6bd9'][(Math.floor(py / 22) + Math.floor(x / 280)) % 5];
-            ctx.fillStyle = dotCol;
-            ctx.beginPath();
-            ctx.arc(x + 215, py, 3, 0, Math.PI * 2);
-            ctx.fill();
-        }
+        // Pillar decoration
+        drawPillarDeco(x + 215, 60, 380, theme.pillarDeco, x);
 
-        // Arched window opening
+        // Windows
         const winX = x + 20;
         const winW = 170;
         const archH = 60;
         const winY = 60;
         const winBodyH = 200;
 
-        // Window: water view inside (animated shimmer)
         ctx.save();
         ctx.beginPath();
-        ctx.moveTo(winX, winY + archH);
-        ctx.lineTo(winX, winY + archH + winBodyH);
-        ctx.lineTo(winX + winW, winY + archH + winBodyH);
-        ctx.lineTo(winX + winW, winY + archH);
-        ctx.arc(winX + winW / 2, winY + archH, winW / 2, 0, Math.PI, true);
-        ctx.closePath();
+        if (theme.windowType === 'rect') {
+            ctx.rect(winX, winY, winW, archH + winBodyH);
+        } else {
+            ctx.moveTo(winX, winY + archH);
+            ctx.lineTo(winX, winY + archH + winBodyH);
+            ctx.lineTo(winX + winW, winY + archH + winBodyH);
+            ctx.lineTo(winX + winW, winY + archH);
+            ctx.arc(winX + winW / 2, winY + archH, winW / 2, 0, Math.PI, true);
+            ctx.closePath();
+        }
         ctx.clip();
 
-        // Water gradient inside window
-        const waterGrad = ctx.createLinearGradient(winX, winY, winX, winY + archH + winBodyH);
-        waterGrad.addColorStop(0, '#0077b6');
-        waterGrad.addColorStop(0.5, '#00b4d8');
-        waterGrad.addColorStop(1, '#48cae4');
-        ctx.fillStyle = waterGrad;
+        // Window background view gradient
+        const winGrad = ctx.createLinearGradient(winX, winY, winX, winY + archH + winBodyH);
+        winGrad.addColorStop(0, theme.windowGradStart);
+        winGrad.addColorStop(1, theme.windowGradEnd);
+        ctx.fillStyle = winGrad;
         ctx.fillRect(winX, winY, winW, archH + winBodyH);
 
-        // Animated water ripple lines inside window
-        ctx.strokeStyle = 'rgba(255,255,255,0.18)';
-        ctx.lineWidth = 1.5;
-        for (let wy = 0; wy < winBodyH; wy += 18) {
-            const rippleOff = Math.sin(runTimer * 0.03 + wy * 0.3 + x * 0.01) * 8;
+        // Window animation details
+        if (theme.windowRippleType === 'water') {
+            ctx.strokeStyle = theme.windowRippleColor;
+            ctx.lineWidth = 1.5;
+            for (let wy = 0; wy < winBodyH; wy += 18) {
+                const rippleOff = Math.sin(runTimer * 0.03 + wy * 0.3 + x * 0.01) * 8;
+                ctx.beginPath();
+                ctx.moveTo(winX, winY + archH + wy + rippleOff);
+                ctx.bezierCurveTo(
+                    winX + winW * 0.33, winY + archH + wy + rippleOff - 5,
+                    winX + winW * 0.66, winY + archH + wy + rippleOff + 5,
+                    winX + winW, winY + archH + wy + rippleOff
+                );
+                ctx.stroke();
+            }
+        } else if (theme.windowRippleType === 'steam_haze') {
+            ctx.fillStyle = theme.windowRippleColor;
+            for (let i = 0; i < 4; i++) {
+                const wispX = winX + 20 + i * 40 + Math.sin(runTimer * 0.02 + i) * 8;
+                ctx.fillRect(wispX, winY, 12, archH + winBodyH);
+            }
+        } else if (theme.windowRippleType === 'bubbles') {
+            ctx.fillStyle = theme.windowRippleColor;
+            for (let i = 0; i < 8; i++) {
+                const bx = winX + ((i * 27 + x * 7) % (winW - 10));
+                const by = winY + archH + winBodyH - ((runTimer * 1.5 + i * 40) % (archH + winBodyH));
+                ctx.beginPath();
+                ctx.arc(bx, by, 3 + (i % 3), 0, Math.PI * 2);
+                ctx.fill();
+            }
+        } else if (theme.windowRippleType === 'leaves') {
+            ctx.fillStyle = theme.windowRippleColor;
+            for (let i = 0; i < 3; i++) {
+                const lx = winX + winW * 0.25 + i * 40;
+                const ly = winY + archH + 30 + i * 40 + Math.sin(runTimer * 0.04 + i) * 5;
+                ctx.beginPath();
+                ctx.ellipse(lx, ly, 15, 8, Math.PI / 4, 0, Math.PI * 2);
+                ctx.ellipse(lx + 10, ly + 10, 10, 6, -Math.PI / 4, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        } else if (theme.windowRippleType === 'magma') {
+            ctx.fillStyle = theme.windowRippleColor;
+            for (let i = 0; i < 5; i++) {
+                const lx = winX + 20 + i * 30 + Math.sin(runTimer * 0.02 + i) * 4;
+                const ly = winY + ((runTimer * 0.8 + i * 50) % (archH + winBodyH));
+                ctx.beginPath();
+                ctx.arc(lx, ly, 6 + (i % 4), 0, Math.PI * 2);
+                ctx.fill();
+            }
+        } else if (theme.windowRippleType === 'snow') {
+            ctx.fillStyle = theme.windowRippleColor;
+            for (let i = 0; i < 15; i++) {
+                const sx = winX + ((i * 19 + x * 3) % (winW - 6));
+                const sy = winY + ((runTimer * 1.2 + i * 25) % (archH + winBodyH));
+                ctx.beginPath();
+                ctx.arc(sx, sy, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        } else if (theme.windowRippleType === 'dripping_water') {
+            ctx.fillStyle = theme.windowRippleColor;
+            for (let i = 0; i < 6; i++) {
+                const dx = winX + ((i * 35 + x * 9) % (winW - 10));
+                const dy = winY + ((runTimer * 2.2 + i * 35) % (archH + winBodyH));
+                ctx.fillRect(dx, dy, 2, 8);
+            }
+        } else if (theme.windowRippleType === 'equalizer') {
+            ctx.fillStyle = theme.windowRippleColor;
+            for (let i = 0; i < 6; i++) {
+                const barW = 18;
+                const barH = 30 + Math.abs(Math.sin(runTimer * 0.05 + i * 0.5)) * 120;
+                const barX = winX + 15 + i * 25;
+                ctx.fillRect(barX, winY + archH + winBodyH - barH, barW, barH);
+            }
+        } else if (theme.windowRippleType === 'clouds') {
+            ctx.fillStyle = theme.windowRippleColor;
+            for (let i = 0; i < 2; i++) {
+                const cx = winX + ((runTimer * 0.3 + i * 120) % (winW + 80)) - 40;
+                const cy = winY + 40 + i * 60;
+                ctx.beginPath();
+                ctx.arc(cx, cy, 25, 0, Math.PI * 2);
+                ctx.arc(cx + 20, cy + 5, 20, 0, Math.PI * 2);
+                ctx.arc(cx - 20, cy + 5, 15, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        } else if (theme.windowRippleType === 'power_vortex') {
+            ctx.strokeStyle = theme.windowRippleColor;
+            ctx.lineWidth = 2;
+            ctx.save();
+            ctx.translate(winX + winW / 2, winY + archH + winBodyH / 2);
+            ctx.rotate(runTimer * 0.03);
             ctx.beginPath();
-            ctx.moveTo(winX, winY + archH + wy + rippleOff);
-            ctx.bezierCurveTo(
-                winX + winW * 0.33, winY + archH + wy + rippleOff - 5,
-                winX + winW * 0.66, winY + archH + wy + rippleOff + 5,
-                winX + winW, winY + archH + wy + rippleOff
-            );
+            for (let i = 0; i < 50; i++) {
+                const angle = 0.1 * i;
+                const r = 2 * i;
+                const vx = Math.cos(angle) * r;
+                const vy = Math.sin(angle) * r;
+                if (i === 0) ctx.moveTo(vx, vy);
+                else ctx.lineTo(vx, vy);
+            }
             ctx.stroke();
+            ctx.restore();
         }
+
         ctx.restore();
 
-        // Window arch frame (decorative gold border)
-        ctx.strokeStyle = '#f5c842';
+        // Window Frame
+        ctx.strokeStyle = theme.windowFrameColor;
         ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.moveTo(winX, winY + archH);
-        ctx.lineTo(winX, winY + archH + winBodyH);
-        ctx.lineTo(winX + winW, winY + archH + winBodyH);
-        ctx.lineTo(winX + winW, winY + archH);
-        ctx.arc(winX + winW / 2, winY + archH, winW / 2, 0, Math.PI, true);
-        ctx.closePath();
-        ctx.stroke();
+        if (theme.windowType === 'rect') {
+            ctx.strokeRect(winX, winY, winW, archH + winBodyH);
+        } else {
+            ctx.beginPath();
+            ctx.moveTo(winX, winY + archH);
+            ctx.lineTo(winX, winY + archH + winBodyH);
+            ctx.lineTo(winX + winW, winY + archH + winBodyH);
+            ctx.lineTo(winX + winW, winY + archH);
+            ctx.arc(winX + winW / 2, winY + archH, winW / 2, 0, Math.PI, true);
+            ctx.closePath();
+            ctx.stroke();
 
-        // Keystone dot at arch peak
-        ctx.fillStyle = '#f5c842';
-        ctx.beginPath();
-        ctx.arc(winX + winW / 2, winY + 4, 7, 0, Math.PI * 2);
-        ctx.fill();
+            // Keystone dot
+            ctx.fillStyle = theme.windowFrameColor;
+            ctx.beginPath();
+            ctx.arc(winX + winW / 2, winY + 4, 7, 0, Math.PI * 2);
+            ctx.fill();
+        }
 
         // Sill at bottom of window
-        ctx.fillStyle = '#2d7ed4';
+        ctx.fillStyle = theme.wainscotingStripeBottom;
         ctx.fillRect(winX - 5, winY + archH + winBodyH, winW + 10, 10);
-        ctx.fillStyle = '#4aacdf';
+        ctx.fillStyle = theme.wainscotingStripeTop;
         ctx.fillRect(winX - 5, winY + archH + winBodyH, winW + 10, 3);
     }
 
-    // ---- Layer 0.5: Wave frieze near ceiling ----
-    ctx.strokeStyle = 'rgba(74, 172, 223, 0.5)';
-    ctx.lineWidth = 2;
-    for (let wx = -40; wx < 960 + 40; wx += 80) {
-        const waveOff = -cameraX * 0.12;
-        const wx2 = ((wx + waveOff) % 960 + 960) % 960;
+    // ---- Layer 0.5: Frieze near ceiling ----
+    if (theme.friezeType === 'wave') {
+        ctx.strokeStyle = theme.friezeColor1;
+        ctx.lineWidth = 2;
+        for (let wx = -40; wx < 960 + 40; wx += 80) {
+            const waveOff = -cameraX * 0.12;
+            const wx2 = ((wx + waveOff) % 960 + 960) % 960;
+            ctx.beginPath();
+            ctx.arc(wx2 + 40, 28, 22, Math.PI, 0, false);
+            ctx.stroke();
+        }
+        ctx.strokeStyle = theme.friezeColor2;
+        for (let wx = -40; wx < 960 + 40; wx += 80) {
+            const waveOff = -cameraX * 0.12 + 40;
+            const wx2 = ((wx + waveOff) % 960 + 960) % 960;
+            ctx.beginPath();
+            ctx.arc(wx2 + 40, 18, 16, Math.PI, 0, false);
+            ctx.stroke();
+        }
+    } else if (theme.friezeType === 'icicle') {
+        ctx.fillStyle = theme.friezeColor1;
+        const width = 20;
+        const iceOff = -cameraX * 0.12;
+        for (let ix = (iceOff % width) - width; ix < 960 + width; ix += width) {
+            const height = 15 + Math.abs(Math.sin((ix + cameraX) * 0.01)) * 20;
+            ctx.beginPath();
+            ctx.moveTo(ix, 0);
+            ctx.lineTo(ix + width, 0);
+            ctx.lineTo(ix + width / 2, height);
+            ctx.closePath();
+            ctx.fill();
+        }
+    } else if (theme.friezeType === 'ivy') {
+        ctx.strokeStyle = '#1b5e20';
+        ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.arc(wx2 + 40, 28, 22, Math.PI, 0, false);
+        ctx.moveTo(0, 20);
+        ctx.lineTo(960, 20);
         ctx.stroke();
-    }
-    // Second wave row
-    ctx.strokeStyle = 'rgba(86, 204, 242, 0.3)';
-    for (let wx = -40; wx < 960 + 40; wx += 80) {
-        const waveOff = -cameraX * 0.12 + 40;
-        const wx2 = ((wx + waveOff) % 960 + 960) % 960;
+
+        ctx.fillStyle = theme.friezeColor1;
+        const spacing = 40;
+        const ivyOff = -cameraX * 0.12;
+        for (let ix = (ivyOff % spacing) - spacing; ix < 960 + spacing; ix += spacing) {
+            ctx.beginPath();
+            ctx.ellipse(ix + 20, 25, 8, 12, 0.2, 0, Math.PI * 2);
+            ctx.ellipse(ix + 32, 28, 6, 8, -0.3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    } else if (theme.friezeType === 'neon') {
+        ctx.shadowColor = theme.friezeColor1;
+        ctx.shadowBlur = 10;
+        ctx.strokeStyle = theme.friezeColor2;
+        ctx.lineWidth = 4;
         ctx.beginPath();
-        ctx.arc(wx2 + 40, 18, 16, Math.PI, 0, false);
+        ctx.moveTo(0, 20);
+        ctx.lineTo(960, 20);
         ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        ctx.fillStyle = theme.friezeColor1;
+        const pulse = Math.abs(Math.sin(runTimer * 0.05)) * 40;
+        ctx.fillRect((pulse * 10) % 960, 18, 50, 4);
     }
 
-    // ---- Layer 1: Nearer wall band — mosaic tile wainscoting ----
+    // ---- Layer 1: Nearer wall band — wainscoting ----
     const bg1Scroll = -cameraX * 0.4;
-    // Wainscoting base
-    ctx.fillStyle = '#1155a0';
+    ctx.fillStyle = theme.wainscotingColor;
     ctx.fillRect(0, 320, 960, 100);
-    ctx.fillStyle = '#4aacdf';
-    ctx.fillRect(0, 318, 960, 4); // top accent stripe
-    ctx.fillStyle = '#0d3d7a';
-    ctx.fillRect(0, 416, 960, 4); // bottom accent stripe
+    ctx.fillStyle = theme.wainscotingStripeTop;
+    ctx.fillRect(0, 318, 960, 4);
+    ctx.fillStyle = theme.wainscotingStripeBottom;
+    ctx.fillRect(0, 416, 960, 4);
 
-    // Mosaic squares in the wainscoting
-    const mosaicColors = ['#56ccf2', '#2d9cdb', '#1a4a8a', '#0077b6', '#48cae4', '#00b4d8'];
+    // Mosaic squares
+    const mosaicColors = theme.mosaicColors;
     for (let x = (bg1Scroll % 12) - 12; x < 960 + 12; x += 12) {
         for (let y = 322; y < 414; y += 12) {
             const ci = (Math.floor((x + bg1Scroll) / 12) * 7 + Math.floor(y / 12) * 3) & 0xfff;
@@ -1619,56 +2482,51 @@ function drawParallaxBackground() {
         }
     }
 
-    // ---- Starfish decorations on wall ----
+    // ---- Wall Decorations ----
     const sfScroll = -cameraX * 0.25;
     for (let sx = (sfScroll % 400) - 400; sx < 960 + 400; sx += 400) {
-        // Large decorative starfish, slowly rotating
         const sfRot = runTimer * 0.003 + sx * 0.005;
-        drawStarfish(sx + 200, 185, 48, sfRot);
-
-        // Small accent starfish
-        drawStarfish(sx + 50, 290, 22, -sfRot * 1.3);
-        drawStarfish(sx + 350, 260, 18, sfRot * 0.8);
+        drawWallDecor(sx + 200, 185, 48, sfRot, theme.decorType, theme.decorColors);
+        drawWallDecor(sx + 50, 290, 22, -sfRot * 1.3, theme.decorType, theme.decorColors);
+        drawWallDecor(sx + 350, 260, 18, sfRot * 0.8, theme.decorType, theme.decorColors);
     }
 
-    // ---- Layer 2: Near pipes — recoloured in aqua palette ----
+    // ---- Layer 2: Near pipes ----
     for (let x = (bg1Scroll % 320) - 320; x < 960 + 320; x += 320) {
-        // Horizontal aqua pipe
-        ctx.fillStyle = '#0d5fa8';
+        ctx.fillStyle = theme.pipeColor;
         ctx.fillRect(x - 60, 45, 320, 10);
-        ctx.fillStyle = '#4aacdf';
+        ctx.fillStyle = theme.pipeHighlight;
         ctx.fillRect(x - 60, 45, 320, 3);
 
-        // Pipe joint
-        ctx.fillStyle = '#f5c842';
+        ctx.fillStyle = theme.pipeJoint1;
         ctx.fillRect(x + 100, 40, 14, 20);
-        ctx.fillStyle = '#d4a800';
+        ctx.fillStyle = theme.pipeJoint2;
         ctx.fillRect(x + 102, 42, 10, 16);
     }
 
-    // ---- Draw Radiators (unchanged positions, aqua recolour) ----
+    // ---- Draw Radiators ----
     radiators.forEach(rad => {
         const radX = rad.x - cameraX;
         if (radX < -100 || radX > 1060) return;
 
-        ctx.fillStyle = '#0d3d7a';
+        ctx.fillStyle = theme.radiatorColor;
         ctx.fillRect(radX, rad.y, rad.width, rad.height);
 
-        ctx.fillStyle = '#1a6ab8';
+        ctx.fillStyle = theme.radiatorFinColor;
         const numFins = 8;
         const finWidth = rad.width / numFins;
         for (let i = 0; i < numFins; i++) {
             ctx.fillRect(radX + i * finWidth + 2, rad.y + 5, finWidth - 4, rad.height - 10);
         }
 
-        // Glowing heat valve — aqua glow
-        ctx.fillStyle = '#56ccf2';
+        // Valve
+        ctx.fillStyle = theme.radiatorValveColor;
         ctx.fillRect(radX - 10, rad.y + 40, 10, 15);
-        ctx.shadowColor = '#00f2fe';
+        ctx.shadowColor = theme.radiatorValveGlow;
         ctx.shadowBlur = 8;
         ctx.fillRect(radX - 10, rad.y + 40, 10, 15);
         ctx.shadowBlur = 0;
-        ctx.fillStyle = '#0d3d7a';
+        ctx.fillStyle = theme.radiatorColor;
         ctx.fillRect(radX - 15, rad.y + rad.height - 20, 15, 10);
     });
 }
@@ -2007,9 +2865,14 @@ function drawHUD() {
     if (tempFill) tempFill.style.width = Math.max(0, player.temperature) + '%';
     if (tractionFill) tractionFill.style.width = Math.max(0, player.traction) + '%';
 
-    // Update level indicator
+    // Update level indicator with level name
     const levelText = document.getElementById('hudLevelText');
-    if (levelText) levelText.innerText = 'LEVEL ' + currentLevel;
+    if (levelText) {
+        const lvlCfg = getLevelConfig();
+        levelText.innerText = `LEVEL ${currentLevel}: ${lvlCfg.name.toUpperCase()}`;
+        // Tint it the theme glow color
+        levelText.style.color = getActiveTheme().glowColor;
+    }
 
     // Progress percentage
     const progress = Math.min(1.0, player.x / LEVEL_END_X);
@@ -2088,6 +2951,7 @@ function loop() {
 function drawWaterPool() {
     if (!player.isOnGround) return; // only when standing / running on floor
 
+    const theme = getActiveTheme();
     const cx = player.x - cameraX + player.width / 2;
     const cy = 420; // floor Y
     const baseRx = player.width * 0.8 + Math.abs(player.speed) * 1.2; // wider when sprinting
@@ -2099,7 +2963,7 @@ function drawWaterPool() {
     // Outer glow ring
     ctx.save();
     ctx.globalAlpha = 0.18;
-    ctx.fillStyle = '#48cae4';
+    ctx.fillStyle = theme.waterPoolColor1;
     ctx.beginPath();
     ctx.ellipse(cx, cy, baseRx + 10 + pulse, ry + 4, 0, 0, Math.PI * 2);
     ctx.fill();
@@ -2107,9 +2971,9 @@ function drawWaterPool() {
     // Main pool body
     ctx.globalAlpha = 0.38;
     const poolGrad = ctx.createRadialGradient(cx, cy, 2, cx, cy, baseRx + pulse);
-    poolGrad.addColorStop(0, '#90e0ef');
-    poolGrad.addColorStop(0.5, '#00b4d8');
-    poolGrad.addColorStop(1, 'rgba(0, 119, 182, 0)');
+    poolGrad.addColorStop(0, theme.waterPoolColor2);
+    poolGrad.addColorStop(0.5, theme.waterPoolColor3);
+    poolGrad.addColorStop(1, theme.waterPoolColor4);
     ctx.fillStyle = poolGrad;
     ctx.beginPath();
     ctx.ellipse(cx, cy, baseRx + pulse, ry, 0, 0, Math.PI * 2);
@@ -2125,7 +2989,7 @@ function drawWaterPool() {
     // Ripple rings that expand outward (timed to footstep)
     const rippleT = player.animTimer % 1.0;
     ctx.globalAlpha = (1 - rippleT) * 0.25;
-    ctx.strokeStyle = '#56ccf2';
+    ctx.strokeStyle = theme.waterPoolRippleColor;
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.ellipse(cx, cy, baseRx * (0.5 + rippleT * 0.8), ry * (0.5 + rippleT * 0.6), 0, 0, Math.PI * 2);

@@ -50,7 +50,7 @@ body {
 
 .steam-cloud {
     position: absolute;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+    background: radial-gradient(circle, var(--cloud-color, rgba(255, 255, 255, 0.08)) 0%, rgba(255, 255, 255, 0) 70%);
     border-radius: 50%;
     pointer-events: none;
     animation: drift 20s infinite linear;
