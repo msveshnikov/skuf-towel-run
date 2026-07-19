@@ -1,10 +1,10 @@
 class SpriteProcessor {
     constructor(opts = {}) {
         this.frames = [];
-        this.originalWidth  = opts.width  || 1024;
+        this.originalWidth = opts.width || 1024;
         this.originalHeight = opts.height || 559;
-        this.frameCount     = opts.frameCount || 4;
-        this.frameBounds    = opts.frameBounds; // required: [{x, w}, ...]
+        this.frameCount = opts.frameCount || 4;
+        this.frameBounds = opts.frameBounds; // required: [{x, w}, ...]
     }
 
     /**
@@ -49,9 +49,9 @@ class SpriteProcessor {
         const bgR = data[0];
         const bgG = data[1];
         const bgB = data[2];
-        
+
         // Key out background color (beige) with a tolerance threshold for JPEG artifacts
-        const tolerance = 25; 
+        const tolerance = 25;
         for (let i = 0; i < data.length; i += 4) {
             const r = data[i];
             const g = data[i + 1];
@@ -170,7 +170,7 @@ window.GRANNY_SPRITE_CONFIG = {
     height: 559,
     frameCount: 4,
     frameBounds: [
-        { x: 55,  w: 219 }, // frame 0 – idle with bucket
+        { x: 55, w: 219 }, // frame 0 – idle with bucket
         { x: 310, w: 198 }, // frame 1 – mop raised / winding
         { x: 532, w: 246 }, // frame 2 – mop swept low
         { x: 788, w: 224 }  // frame 3 – mop extended

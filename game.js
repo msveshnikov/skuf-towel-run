@@ -53,7 +53,7 @@ class GameAudio {
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(150, this.ctx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(600, this.ctx.currentTime + 0.15);
-        
+
         gain.gain.setValueAtTime(this.synthVolume, this.ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.15);
 
@@ -89,7 +89,7 @@ class GameAudio {
     playSplash() {
         if (this.isMuted) return;
         this.init(); this.resume();
-        
+
         // Generate white noise for water splash
         const bufferSize = this.ctx.sampleRate * 0.25; // 0.25 seconds
         const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
@@ -131,7 +131,7 @@ class GameAudio {
 
             osc.type = 'square';
             osc.frequency.setValueAtTime(freq, now + idx * 0.08);
-            
+
             gain.gain.setValueAtTime(this.synthVolume * 0.8, now + idx * 0.08);
             gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.08 + 0.12);
 
@@ -154,7 +154,7 @@ class GameAudio {
 
             osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, now + idx * 0.06);
-            
+
             gain.gain.setValueAtTime(this.synthVolume * 0.7, now + idx * 0.06);
             gain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.06 + 0.2);
 
@@ -180,7 +180,7 @@ class GameAudio {
 
             osc.type = 'square';
             osc.frequency.setValueAtTime(freq, now + cumulativeTime);
-            
+
             gain.gain.setValueAtTime(this.synthVolume, now + cumulativeTime);
             gain.gain.setValueAtTime(this.synthVolume, now + cumulativeTime + durations[idx] - 0.02);
             gain.gain.exponentialRampToValueAtTime(0.001, now + cumulativeTime + durations[idx]);
@@ -201,7 +201,7 @@ class GameAudio {
         const tick = () => {
             if (this.isMuted) return;
             const now = this.ctx.currentTime;
-            
+
             // Simple retro bassline sequencer: C - G - Am - F
             const bassline = [
                 130.8, 130.8, 130.8, 130.8, // C3
@@ -209,7 +209,7 @@ class GameAudio {
                 110.0, 110.0, 110.0, 110.0, // A2
                 87.3, 87.3, 87.3, 87.3      // F2
             ];
-            
+
             const leadMelody = [
                 261.6, 329.6, 392.0, 523.3, // C arpeggio
                 293.7, 392.0, 493.9, 587.3, // G arpeggio
@@ -223,10 +223,10 @@ class GameAudio {
             const bassOsc = this.ctx.createOscillator();
             const bassFilter = this.ctx.createBiquadFilter();
             const bassGain = this.ctx.createGain();
-            
+
             bassOsc.type = 'sawtooth';
             bassOsc.frequency.setValueAtTime(bassline[step], now);
-            
+
             bassFilter.type = 'lowpass';
             bassFilter.frequency.setValueAtTime(300, now);
 
@@ -304,7 +304,7 @@ const gameAudio = new GameAudio();
 const spriteProcessor = new SpriteProcessor({
     width: 1024, height: 559, frameCount: 4,
     frameBounds: [
-        { x: 29,  w: 241 }, // frame 0 – left foot forward
+        { x: 29, w: 241 }, // frame 0 – left foot forward
         { x: 281, w: 224 }, // frame 1 – stride peak
         { x: 516, w: 211 }, // frame 2 – right foot forward
         { x: 742, w: 265 }  // frame 3 – slide / both feet down
@@ -325,7 +325,7 @@ let player = {
     vy: 0,
     width: 60,   // Collision width
     height: 120, // Collision height
-    
+
     // Movement parameters
     speed: 0,
     maxSpeed: 8,
@@ -345,7 +345,7 @@ let player = {
     // Slipped state timers
     slipTimer: 0,
     slipDuration: 80, // frames player slides out of control
-    
+
     // Core game stats
     temperature: 100, // percentage 0-100
     traction: 100,    // percentage 0-100
@@ -594,7 +594,7 @@ function generateLevel() {
         // Decide spacing based on position (get harder as you go)
         const densityMultiplier = xPointer < 2000 ? 1.0 : (xPointer < 3800 ? 0.8 : 0.6);
         const spacing = (cfg.minSpacing + Math.random() * cfg.maxSpacingJitter) * densityMultiplier;
-        
+
         xPointer += spacing;
         if (xPointer >= LEVEL_END_X - 250) break;
 
@@ -738,7 +738,7 @@ function detectTouchDevice() {
     if (isTouch) {
         const mobileControls = document.getElementById('mobileControls');
         if (mobileControls) mobileControls.classList.add('visible');
-        
+
         // Hide standard keyboard control badges
         const controlsReminder = document.getElementById('controlsReminder');
         if (controlsReminder) controlsReminder.style.display = 'none';
@@ -752,7 +752,7 @@ function scaleGame() {
     if (!wrapper) return;
     const w = window.innerWidth;
     const h = window.innerHeight;
-    
+
     // Scale to fit screen dimension (maximum fit)
     const scale = Math.min(w / 960, h / 540);
     wrapper.style.transform = `scale(${scale})`;
@@ -832,7 +832,7 @@ function startGame() {
     player.isSlipped = false;
     player.isFrozen = false;
     player.isInvulnerable = 0;
-    
+
     cameraX = 0;
     runTimer = 0;
     mopsDodgedCount = 0;
@@ -865,7 +865,7 @@ function triggerGameOver(reason, advice) {
 
     document.getElementById('gameHud').classList.remove('visible');
     document.getElementById('controlsReminder').classList.remove('visible');
-    
+
     document.getElementById('deathReason').innerText = reason;
     document.getElementById('deathAdvice').innerText = advice;
     document.getElementById('gameOverScreen').classList.remove('hidden');
@@ -919,7 +919,7 @@ function skipAd() {
     player.vy = 0;
     player.speed = 2; // slow push forward
     player.isInvulnerable = 150; // 2.5 seconds invulnerability
-    
+
     adsWatchedCount++;
     resumeCount++;
 
@@ -930,7 +930,7 @@ function skipAd() {
 function offerResume() {
     gameState = STATES.RESUME_PROMPT;
     gameAudio.stopBgm();
-    
+
     document.getElementById('gameHud').classList.remove('visible');
     document.getElementById('controlsReminder').classList.remove('visible');
 
@@ -956,7 +956,7 @@ function offerResume() {
     // Cancel callback helper on action buttons
     const watchAdBtn = document.getElementById('watchAdBtn');
     const restartBtn = document.getElementById('restartGameBtn');
-    
+
     const cleanup = () => {
         clearInterval(interval);
         watchAdBtn.removeEventListener('click', cleanup);
@@ -981,7 +981,7 @@ function updatePhysics() {
     if (!keys.right && player.traction < 100) {
         player.traction += 0.9; // recover grip slowly
     }
-    
+
     if (player.traction > 100) player.traction = 100;
     if (player.traction < 0) player.traction = 0;
 
@@ -990,7 +990,7 @@ function updatePhysics() {
         // Player is sliding helplessly on the floor
         player.slipTimer--;
         player.isDucking = true; // collision bounds squished during slip
-        
+
         // Slipping maintains high momentum with minor friction deceleration
         player.speed *= 0.975;
         player.x += player.speed;
@@ -1010,14 +1010,14 @@ function updatePhysics() {
             // Ducking decelerates player speed rapidly
             player.speed -= player.decel * 1.5;
             if (player.speed < 0) player.speed = 0;
-            
+
             // Ducking slide: if slide executed at high velocity, trigger momentary slide
             if (keys.right && player.speed > 5) {
                 player.isSliding = true;
             }
         } else {
             player.isSliding = false;
-            
+
             if (keys.right) {
                 // Accelerate
                 player.speed += player.accel;
@@ -1047,10 +1047,10 @@ function updatePhysics() {
                 player.isSlipped = true;
                 player.slipTimer = player.slipDuration;
                 gameAudio.playSlip();
-                
+
                 // Propel forward with extra slide inertia
                 player.speed = Math.max(player.speed * 1.3, 7.5);
-                
+
                 // Emit sliding splash particles
                 for (let i = 0; i < 15; i++) {
                     particles.push({
@@ -1100,7 +1100,7 @@ function updatePhysics() {
 
     // Floor boundaries
     const floorY = 420; // pixels from top
-    
+
     // Bounds height matches ducking/sliding state
     player.height = (player.isDucking || player.isSlipped) ? 60 : 120;
     const playerFeet = player.y + player.height;
@@ -1133,7 +1133,7 @@ function updatePhysics() {
             triggerGameOver("DEEP FROST SHOCK", "All your heat escaped. The sauna is too far!");
         }
     }
-    
+
     // Limit temperature to 100% max
     if (player.temperature > 100) player.temperature = 100;
 
@@ -1157,12 +1157,12 @@ function updateObstacles() {
             case 'fan':
                 // Animate rotor angle
                 obs.rotAngle += 0.25;
-                
+
                 // Ceiling/floor fans blowing cold wind horizontally
                 // Wind stretches out to the left of the fan
                 const windLeft = obs.x - obs.windWidth;
                 const windRight = obs.x;
-                
+
                 // Vertical extent of the wind zone
                 const windTop = obs.isCeiling ? obs.y : obs.y - 30;
                 const windBottom = obs.isCeiling ? obs.y + 110 : obs.y + 60;
@@ -1175,7 +1175,7 @@ function updateObstacles() {
 
                     if (isWindHitting && player.isInvulnerable <= 0) {
                         player.temperature -= 0.38; // freeze player
-                        
+
                         // Push player back slightly due to wind resistance
                         player.speed -= 0.05;
 
@@ -1210,19 +1210,19 @@ function updateObstacles() {
 
             case 'bucket_lady':
                 obs.splashTimer++;
-                
+
                 // Wind up throw
                 if (obs.splashTimer % obs.splashCooldown > obs.splashCooldown - 30) {
                     obs.state = 'winding';
                 }
-                
+
                 // Execute Splash Throw
                 if (obs.splashTimer % obs.splashCooldown === 0) {
                     obs.state = 'throwing';
-                    
+
                     // Throw splash: spawn splash water entities heading left
                     gameAudio.playSplash();
-                    
+
                     for (let i = 0; i < 8; i++) {
                         particles.push({
                             isWaterHazard: true,
@@ -1236,7 +1236,7 @@ function updateObstacles() {
                         });
                     }
                 }
-                
+
                 // Return to idle
                 if (obs.splashTimer % obs.splashCooldown === 30) {
                     obs.state = 'idle';
@@ -1260,7 +1260,7 @@ function updateObstacles() {
                 // If player feet collide with mop head and not jumping, slip instantly!
                 if (playerBox.right > mopBox.left && playerBox.left < mopBox.right &&
                     playerBox.bottom > mopBox.top && player.isInvulnerable <= 0) {
-                    
+
                     if (player.isOnGround && !player.isSlipped) {
                         player.isSlipped = true;
                         player.slipTimer = player.slipDuration;
@@ -1295,7 +1295,7 @@ function updateObstacles() {
 
                 if (playerBox.right > machBox.left && playerBox.left < machBox.right &&
                     playerBox.bottom > machBox.top && playerBox.top < machBox.bottom) {
-                    
+
                     if (player.isInvulnerable <= 0) {
                         // Impact details: instant slip and knocks player back/down
                         if (!player.isSlipped) {
@@ -1331,7 +1331,7 @@ function updateObstacles() {
         if (player.x + player.width > rad.x - 30 && player.x < rad.x + rad.width + 30) {
             // Warm zone heats player up
             player.temperature += 0.42;
-            
+
             // Dry wet feet
             if (player.traction < 100) player.traction += 0.8;
 
@@ -1347,7 +1347,7 @@ function updateObstacles() {
                     life: 25
                 });
             }
-            
+
             // Play warm hum sound periodically
             if (runTimer % 18 === 0) {
                 gameAudio.playWarm();
@@ -1366,12 +1366,12 @@ function updateParticles() {
         // Apply water gravity
         if (p.isWaterHazard) {
             p.vy += 0.18; // water gravity
-            
+
             // Check splash hitting floor
             if (p.y >= 420) {
                 p.y = 420;
                 p.life = 0; // dies on impact
-                
+
                 // Create wet puddle floor zone at collision spot
                 // and mini-splashes
                 for (let k = 0; k < 3; k++) {
@@ -1398,7 +1398,7 @@ function updateParticles() {
                 };
                 if (p.x > playerBox.left && p.x < playerBox.right &&
                     p.y > playerBox.top && p.y < playerBox.bottom) {
-                    
+
                     player.temperature -= 15; // huge chill
                     player.traction -= 22; // lose grip
                     p.life = 0; // absorb water splash
@@ -1431,8 +1431,8 @@ function isFloorWetAt(worldX) {
 function drawStarfish(x, y, r, t) {
     // 5-armed starfish shape filled with multicolored circles (Aqua Palace logo style)
     const dotColors = [
-        '#e8543a','#f5a623','#f9e054','#6fcf97','#56ccf2',
-        '#bb6bd9','#eb5757','#2d9cdb','#27ae60','#f2994a'
+        '#e8543a', '#f5a623', '#f9e054', '#6fcf97', '#56ccf2',
+        '#bb6bd9', '#eb5757', '#2d9cdb', '#27ae60', '#f2994a'
     ];
     ctx.save();
     ctx.translate(x, y);
@@ -1463,7 +1463,7 @@ function drawStarfish(x, y, r, t) {
             const dx = Math.cos(ang) * ringR;
             const dy = Math.sin(ang) * ringR;
             // Only draw dots inside the star shape — skip corners
-            const inStar = Math.sqrt(dx*dx+dy*dy) < r * 0.72;
+            const inStar = Math.sqrt(dx * dx + dy * dy) < r * 0.72;
             if (!inStar) continue;
             ctx.fillStyle = dotColors[(seed + d++) % dotColors.length];
             ctx.beginPath();
@@ -1505,7 +1505,7 @@ function drawParallaxBackground() {
 
         // Mosaic dot trim on pillar
         for (let py = 60; py < 380; py += 22) {
-            const dotCol = ['#56ccf2','#f5a623','#6fcf97','#eb5757','#bb6bd9'][(Math.floor(py/22) + Math.floor(x/280)) % 5];
+            const dotCol = ['#56ccf2', '#f5a623', '#6fcf97', '#eb5757', '#bb6bd9'][(Math.floor(py / 22) + Math.floor(x / 280)) % 5];
             ctx.fillStyle = dotCol;
             ctx.beginPath();
             ctx.arc(x + 215, py, 3, 0, Math.PI * 2);
@@ -1526,7 +1526,7 @@ function drawParallaxBackground() {
         ctx.lineTo(winX, winY + archH + winBodyH);
         ctx.lineTo(winX + winW, winY + archH + winBodyH);
         ctx.lineTo(winX + winW, winY + archH);
-        ctx.arc(winX + winW/2, winY + archH, winW/2, 0, Math.PI, true);
+        ctx.arc(winX + winW / 2, winY + archH, winW / 2, 0, Math.PI, true);
         ctx.closePath();
         ctx.clip();
 
@@ -1546,8 +1546,8 @@ function drawParallaxBackground() {
             ctx.beginPath();
             ctx.moveTo(winX, winY + archH + wy + rippleOff);
             ctx.bezierCurveTo(
-                winX + winW*0.33, winY + archH + wy + rippleOff - 5,
-                winX + winW*0.66, winY + archH + wy + rippleOff + 5,
+                winX + winW * 0.33, winY + archH + wy + rippleOff - 5,
+                winX + winW * 0.66, winY + archH + wy + rippleOff + 5,
                 winX + winW, winY + archH + wy + rippleOff
             );
             ctx.stroke();
@@ -1562,14 +1562,14 @@ function drawParallaxBackground() {
         ctx.lineTo(winX, winY + archH + winBodyH);
         ctx.lineTo(winX + winW, winY + archH + winBodyH);
         ctx.lineTo(winX + winW, winY + archH);
-        ctx.arc(winX + winW/2, winY + archH, winW/2, 0, Math.PI, true);
+        ctx.arc(winX + winW / 2, winY + archH, winW / 2, 0, Math.PI, true);
         ctx.closePath();
         ctx.stroke();
 
         // Keystone dot at arch peak
         ctx.fillStyle = '#f5c842';
         ctx.beginPath();
-        ctx.arc(winX + winW/2, winY + 4, 7, 0, Math.PI * 2);
+        ctx.arc(winX + winW / 2, winY + 4, 7, 0, Math.PI * 2);
         ctx.fill();
 
         // Sill at bottom of window
@@ -1610,7 +1610,7 @@ function drawParallaxBackground() {
     ctx.fillRect(0, 416, 960, 4); // bottom accent stripe
 
     // Mosaic squares in the wainscoting
-    const mosaicColors = ['#56ccf2','#2d9cdb','#1a4a8a','#0077b6','#48cae4','#00b4d8'];
+    const mosaicColors = ['#56ccf2', '#2d9cdb', '#1a4a8a', '#0077b6', '#48cae4', '#00b4d8'];
     for (let x = (bg1Scroll % 12) - 12; x < 960 + 12; x += 12) {
         for (let y = 322; y < 414; y += 12) {
             const ci = (Math.floor((x + bg1Scroll) / 12) * 7 + Math.floor(y / 12) * 3) & 0xfff;
@@ -1675,7 +1675,7 @@ function drawParallaxBackground() {
 
 function drawFloorTiles() {
     const floorY = 420;
-    
+
     // Draw solid dark floor base (level-tinted)
     const lvlCfg = getLevelConfig();
     ctx.fillStyle = lvlCfg.floorBase;
@@ -1683,13 +1683,13 @@ function drawFloorTiles() {
 
     // Floor scroll (Fast scroll - matches camera 1:1)
     const floorScroll = -cameraX;
-    
+
     // Draw wet tiles reflections
     ctx.strokeStyle = lvlCfg.groutColor;
     ctx.lineWidth = 1;
     for (let x = (floorScroll % 80) - 80; x < 960 + 80; x += 80) {
         const worldTileX = cameraX + x;
-        
+
         // Check if this tile section is wet
         if (isFloorWetAt(worldTileX)) {
             ctx.fillStyle = lvlCfg.floorWet;
@@ -1744,7 +1744,7 @@ function drawEntities() {
                 // Stand pipe
                 ctx.fillStyle = '#2d3345';
                 ctx.fillRect(obsX + obs.width / 2 - 4, obs.y + 10, 8, obs.isCeiling ? -160 : 70);
-                
+
                 // Fan ring cage
                 ctx.strokeStyle = '#444d66';
                 ctx.lineWidth = 4;
@@ -1778,7 +1778,7 @@ function drawEntities() {
                 const gradient = ctx.createLinearGradient(windLeft, obs.y + 30, obsX, obs.y + 30);
                 gradient.addColorStop(0, 'rgba(0, 242, 254, 0)');
                 gradient.addColorStop(1, 'rgba(0, 242, 254, 0.15)');
-                
+
                 ctx.fillStyle = gradient;
                 const windTop = obs.isCeiling ? obs.y + 5 : obs.y - 15;
                 ctx.fillRect(windLeft, windTop, obs.windWidth, 50);
@@ -1836,7 +1836,7 @@ function drawEntities() {
                 // Red industrial scrubbing vehicle
                 ctx.fillStyle = '#bd2222'; // base housing
                 ctx.fillRect(obsX, obs.y, obs.width, obs.height - 10);
-                
+
                 // Handle/Steer bar
                 ctx.strokeStyle = '#5a6275';
                 ctx.lineWidth = 4;
@@ -1867,7 +1867,7 @@ function drawEntities() {
 function drawFloorReflection() {
     // Canvas mirror translation rendering
     ctx.save();
-    
+
     // Position floor reflection below tiles baseline y=420
     ctx.translate(0, 840);
     ctx.scale(1, -0.6); // flip vertically, flatten reflection height
@@ -1890,7 +1890,7 @@ function drawFloorReflection() {
     obstacles.forEach(obs => {
         const obsX = obs.x - cameraX;
         if (obsX < -150 || obsX > 1110) return;
-        
+
         if (obs.type === 'bucket_lady' || obs.type === 'mop_lady') {
             if (grannySpritesLoaded && grannySprites.length > 0) {
                 drawGrannySprite(obsX + obs.width / 2, obs.y + obs.height, 0, true);
@@ -1926,10 +1926,10 @@ function drawPlayerSprite(drawX, drawY, isReflection = false) {
     if (spritesLoaded && playerSprites.length > 0) {
         // Sprite is sliced and cropped correctly
         const currentFrame = playerSprites[player.animFrame];
-        
+
         ctx.save();
         ctx.translate(drawX + player.width / 2, drawY + player.height / 2);
-        
+
         // Rotate sprite 90 degrees if player slipped flat
         if (player.isSlipped) {
             ctx.rotate(Math.PI / 2);
@@ -1939,9 +1939,9 @@ function drawPlayerSprite(drawX, drawY, isReflection = false) {
         // Scaled to fit current player box dimensions
         const scaleW = player.width / currentFrame.width;
         const scaleH = player.height / currentFrame.height;
-        
+
         ctx.scale(scaleW, scaleH);
-        
+
         // Flip sprite if backing up left
         if (keys.left && !player.isSlipped) {
             ctx.scale(-1, 1);
@@ -1953,7 +1953,7 @@ function drawPlayerSprite(drawX, drawY, isReflection = false) {
         // Fallback vector drawing if sprite sheet is loading/failing
         // Funny fat retro guy silhouette
         ctx.fillStyle = player.isFrozen ? '#b0f2fe' : (player.isSlipped ? '#d47c40' : '#d4a373');
-        
+
         ctx.save();
         ctx.translate(drawX + player.width / 2, drawY + player.height / 2);
         if (player.isSlipped) ctx.rotate(Math.PI / 2);
@@ -2014,7 +2014,7 @@ function drawHUD() {
     // Progress percentage
     const progress = Math.min(1.0, player.x / LEVEL_END_X);
     if (distanceMarker) distanceMarker.style.left = (progress * 90) + '%';
-    
+
     // Display remaining distance meters
     const metersLeft = Math.max(0, Math.ceil((LEVEL_END_X - player.x) / 10));
     if (distanceText) distanceText.style.innerText = metersLeft + 'm';
@@ -2035,7 +2035,7 @@ function animatePlayer() {
         player.animFrame = 3; // slide frame
         return;
     }
-    
+
     if (player.isDucking) {
         player.animFrame = 2; // ducking/crouched frame
         return;
@@ -2172,7 +2172,7 @@ async function init() {
         console.error("Granny sprite sheet loading failed, using fallback vectors.", e);
         grannySpritesLoaded = false;
     }
-    
+
     // Start game loop
     requestAnimationFrame(loop);
 }
